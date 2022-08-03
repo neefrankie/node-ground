@@ -3,7 +3,11 @@
 {% block content %}
 <section>
   <h4 class="text-center">File Uploader</h4>
-  <form method="post" enctype="multipart/form-data">
+  <form method="post" 
+    enctype="multipart/form-data" 
+    id="fileForm" 
+    action="/upload"
+  >
     <div class="mb-3">
       <label 
         for="formFile" 
@@ -25,8 +29,11 @@
   <div class="preview"></div>
 
   <h4>Drag & Drop</h4>
-  <div id="dropbox" class="shadow-none p-3 mb-5 bg-light rounded">
+  <div id="dropbox" class="shadow-none p-3 mb-5 bg-light rounded border">
     Drop a file here
+  </div>
+  <div id="gallery">
+
   </div>
 </section>
 {% endblock %}
