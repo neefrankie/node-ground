@@ -1,4 +1,5 @@
 const previewEl = document.querySelector<HTMLElement>('.preview');
+const galleryEl = document.getElementById('gallery');
 
 function cleanChild(el: HTMLElement) {
   while (el.firstChild) {
@@ -34,8 +35,6 @@ function handleSelectFile() {
   });
 }
 
-
-
 function handleFiles(files: FileList): HTMLOListElement {
   const list = document.createElement('ol');
 
@@ -49,6 +48,45 @@ function handleFiles(files: FileList): HTMLOListElement {
   }
 
   return list;
+}
+
+function handleSubmit() {
+  const form = document.getElementById('fileForm');
+  const inputEl = document.querySelector<HTMLInputElement>('#formFile');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const files = inputEl?.files;
+    if (!files) {
+      return;
+    }
+
+    if (files.length === 0) {
+      return;
+    }
+
+    const file = files[0];
+
+    const formData = new FormData();
+    formData.append('apk', file, file.name);
+
+    console.log(formData);
+
+    fetch('/upload', {
+        method: 'PUT',
+        body: formData,
+        // headers: {
+        //   'Content-Type': 'multipart/form-data'
+        // }
+      })
+      .then(resp => {
+        console.log(resp);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 }
 
 function dragAndDrop() {
@@ -81,10 +119,44 @@ function dragAndDrop() {
       return;
     }
 
-    previewEl?.append(handleFiles(files))
+    galleryEl?.appendChild(handleImages(files));
 
   }, false);
 }
 
+function handleImages(files: FileList): HTMLUListElement {
+
+  const list = document.createElement('ul');
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+
+    if (!file.type.startsWith('image/')) {
+      continue;
+    }
+    
+    const li = document.createElement('li');
+
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.height = 60;
+    img.onload = function() {
+      URL.revokeObjectURL(img.src);
+    };
+
+    li.appendChild(img);
+
+    const info = document.createElement('span');
+    info.innerHTML = `${file.name}: ${file.size} bytes`;
+
+    li.appendChild(info);
+
+    list.appendChild(li);
+  }
+
+  return list;
+}
+
 handleSelectFile();
+handleSubmit();
 dragAndDrop();
