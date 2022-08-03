@@ -1,29 +1,10 @@
-const inputEl = document.querySelector<HTMLInputElement>('#formFile');
 const previewEl = document.querySelector<HTMLElement>('.preview');
 
-inputEl?.addEventListener('change', () => {
-
-  while (previewEl?.firstChild) {
-    previewEl.removeChild(previewEl.firstChild);
+function cleanChild(el: HTMLElement) {
+  while (el.firstChild) {
+    el.removeChild(el.firstChild);
   }
-
-  const curFiles = inputEl.files;
-  if (!curFiles) {
-    return
-  }
-
-  const list = document.createElement('ol');
-  previewEl?.append(list);
-  
-  for (const file of curFiles) {
-    const listItem = document.createElement('li');
-    const para = document.createElement('p');
-    para.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
-    
-    listItem.appendChild(para);
-    list.appendChild(listItem);
-  }
-});
+}
 
 function returnFileSize(size: number): string {
   if (size < 1024) {
@@ -33,5 +14,77 @@ function returnFileSize(size: number): string {
   } else {
     return `${(size/1048576).toFixed(1)}MB`;
   }
-
 }
+
+function handleSelectFile() {
+  const inputEl = document.querySelector<HTMLInputElement>('#formFile');
+  
+  inputEl?.addEventListener('change', () => {
+  
+    if (previewEl) {
+      cleanChild(previewEl);
+    }
+  
+    const curFiles = inputEl.files;
+    if (!curFiles) {
+      return
+    }
+  
+    previewEl?.append(handleFiles(curFiles));
+  });
+}
+
+
+
+function handleFiles(files: FileList): HTMLOListElement {
+  const list = document.createElement('ol');
+
+  for (const file of files) {
+    const listItem = document.createElement('li');
+    const para = document.createElement('p');
+    para.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
+    
+    listItem.appendChild(para);
+    list.appendChild(listItem);
+  }
+
+  return list;
+}
+
+function dragAndDrop() {
+  const dropboxEl = document.getElementById('dropbox');
+  
+  dropboxEl?.addEventListener('dragenter', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+  }, false);
+
+  dropboxEl?.addEventListener('dragover', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+  }, false);
+
+  dropboxEl?.addEventListener('drop', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    console.log('Dropping file...');
+
+    if (previewEl) {
+      cleanChild(previewEl);
+    }
+  
+    const dt = e.dataTransfer;
+    const files = dt?.files;
+
+    if (!files) {
+      return;
+    }
+
+    previewEl?.append(handleFiles(files))
+
+  }, false);
+}
+
+handleSelectFile();
+dragAndDrop();
