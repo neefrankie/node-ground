@@ -19,6 +19,7 @@ configure(
 
 // Serve static file for bootstrap from node_modules.
 app.use(express.static(resolve(__dirname, '../node_modules/bootstrap/dist/css')));
+app.use(express.static(resolve(__dirname, '../build')));
 
 app.get('/', (req, res) => {
   res.render('index.html')
