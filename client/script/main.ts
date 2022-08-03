@@ -2,6 +2,11 @@ const inputEl = document.querySelector<HTMLInputElement>('#formFile');
 const previewEl = document.querySelector<HTMLElement>('.preview');
 
 inputEl?.addEventListener('change', () => {
+
+  while (previewEl?.firstChild) {
+    previewEl.removeChild(previewEl.firstChild);
+  }
+
   const curFiles = inputEl.files;
   if (!curFiles) {
     return
@@ -16,6 +21,7 @@ inputEl?.addEventListener('change', () => {
     para.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
     
     listItem.appendChild(para);
+    list.appendChild(listItem);
   }
 });
 
