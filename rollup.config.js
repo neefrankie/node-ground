@@ -1,10 +1,10 @@
+import { defineConfig } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
 import { terser } from "rollup-plugin-terser";
 
 const production = !process.env.ROLLUP_WATCH;
 
-export default [
-  // Process vanilla TS.
+export default defineConfig([
   {
     input: "./client/script/main.ts",
     output: {
@@ -22,4 +22,6 @@ export default [
       production && terser(),
     ],
   },
-];
+]);
+
+
