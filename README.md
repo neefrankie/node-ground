@@ -8,15 +8,19 @@ A bundler links multiple files into a single one.
 
 ### Compiler
 
+* Typescript compiler
 * Babel
 * swc
+* esbuild
 
 ### Bundler
 
 * webpack
 * rollup
 * spack
+* esbuild
 
 ### Minification
 
 * terser
+* esbuild
