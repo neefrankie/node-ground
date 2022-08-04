@@ -8,10 +8,10 @@
     "test": "jest",
     "watch-test": "jest --watch",
     "postversion": "git push && git push --tags",
-    "swc": "swc client/script/main.ts -o build/script/main.js -w",
+    "swc": "swc client/script/main.ts -o build/script/swc-build.js -w",
     "spack": "spack",
-    "esbuild": "esbuild client/script/main.ts --bundle --outfile=out.js --watch",
-    "rollup": "rollup -w",
+    "esbuild": "esbuild client/script/main.ts --bundle --sourcemap --outfile=build/script/main.js --watch",
+    "rollup": "rollup -c -w",
     "clean": "rm -rf build/*",
     "serve": "nodemon"
   },
