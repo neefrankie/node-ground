@@ -9,6 +9,7 @@
     "watch-test": "jest --watch",
     "postversion": "git push && git push --tags",
     "watch-swc": "swc client/script/main.ts -o build/script/main.js -w",
+    "spack": "spack",
     "clean": "rm -rf build/*",
     "serve": "nodemon"
   },
