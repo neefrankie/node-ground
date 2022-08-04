@@ -59,7 +59,5 @@ typings/
 .env
 .tmp
 *.log
-_docs/**/*.png
-_docs/build
 build
 dist
