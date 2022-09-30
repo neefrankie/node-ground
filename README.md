@@ -1,6 +1,14 @@
 # A Node.js and frontend playground
 
-## Tooling
+This is monorepo consists of:
+
+* auth-vue: a Vue.js app for authentication;
+* client: using vanilla js to demonstrate various bleeding-edge tools;
+* hello-js-react: demonstrate how to build React written in JS using webpack;
+* hello-ts-react: demonstrate how to build React written in TS using webpack;
+* server: a simple express app.
+
+## Frontend Tooling
 
 A compiler performs parsing of the source codes, generates abstract syntax tree and transforms the code into another representation.
 
