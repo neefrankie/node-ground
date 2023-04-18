@@ -1,0 +1,21 @@
+{
+  "name": "build-your-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "weiguo.ni",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src -d build",
+    "serve": "serve"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "serve": "^14.2.0"
+  },
+  "dependencies": {
+    "react-dom": "^18.2.0"
+  }
+}
