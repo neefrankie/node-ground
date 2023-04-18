@@ -1,12 +1,21 @@
 import { createRoot } from 'react-dom/client';
 
-const element = {
-  type: "h1",
-  props: {
-    title: "foo",
-    children: "Hello"
+function createElement(type, props, ...children) {
+  return {
+    type,
+    props: {
+      ...props,
+      children,
+    }
   }
 }
+
+const element = React.createElement(
+  "div",
+  { id: "foo" },
+  React.createElement("a", null, "bar"),
+  React.createElement("b")
+);
 
 const root = createRoot(document.getElementById("root"));
 
