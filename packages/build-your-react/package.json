@@ -5,7 +5,7 @@
   "author": "weiguo.ni",
   "license": "MIT",
   "scripts": {
-    "build": "babel src -d build",
+    "build": "babel src --out-file build/index.js --watch",
     "serve": "serve"
   },
   "devDependencies": {
@@ -16,6 +16,7 @@
     "serve": "^14.2.0"
   },
   "dependencies": {
+    "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
 }
