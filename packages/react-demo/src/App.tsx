@@ -4,6 +4,7 @@ import { TodoList } from './todo/TodoList';
 import { QuizForm } from './state/Quiz';
 import { NameForm } from './state/NameForm';
 import { Accodion } from './state/Pannel';
+import { Messenger } from './state/Chat';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <QuizForm />
         <NameForm />
         <Accodion />
+        <Messenger />
       </div>
     </RecoilRoot>
   );
