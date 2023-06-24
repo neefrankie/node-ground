@@ -3,7 +3,7 @@
   "packageManager": "yarn@3.6.0",
   "scripts": {
     "watch-js": "rollup -c -w",
-    "watch-css": "postcss client/main.css --output build/main.css",
+    "watch-css": "postcss client/main.css --output build/main.css --watch",
     "dev": "npm-run-all --parallel watch-js watch-css"
   },
   "devDependencies": {
