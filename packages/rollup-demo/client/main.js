@@ -1,3 +1,6 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 /**
  * 
  * @param {HTMLElement} container 
@@ -40,26 +43,43 @@ function showList(container, items) {
   }
 }
 
-function loadAndShow() {
+async function loadAndShow() {
   const url = 'https://api.taboola.com/1.2/json/newsplace-tndemotester/recommendations.get?app.apikey=f44d224ed117102b74bed53b82e6079af28600d5&app.type=mobile&source.type=home&source.id=%2F&source.url=http%3A%2F%2Fexample.com&placement.name=Editorial%20Trending&placement.rec-count=100&placement.organic-type=mix&placement.thumbnail.width=640&placement.thumbnail.height=480&user.session=init';
 
-  fetch(url)
-    .then((resp) => {
-      if (!resp.ok) {
-        throw new Error(`Error ${resp.status} ${resp.statusText}`);
-      }
+  try {
+    const resp = await fetch(url);
+    if (!resp.ok) {
+      throw new Error(`Error ${resp.status} ${resp.statusText}`);
+    }
 
-      return resp.json();
-    })
-    .then((data) => {
-      if (!data.list) {
-        return;
-      }
-      showList(document.querySelector('.my-grid'), data.list);
-    })
-    .catch((e) => {
-      alert(e.message);
-    });
+    const data = await resp.json();
+
+    if (!data.list) {
+      return;
+    }
+    showList(document.querySelector('.my-grid'), data.list);
+  } catch (e) {
+    alert(e.message);
+  }
+  
+  
+  // fetch(url)
+  //   .then((resp) => {
+  //     if (!resp.ok) {
+  //       throw new Error(`Error ${resp.status} ${resp.statusText}`);
+  //     }
+
+  //     return resp.json();
+  //   })
+  //   .then((data) => {
+  //     if (!data.list) {
+  //       return;
+  //     }
+  //     showList(document.querySelector('.my-grid'), data.list);
+  //   })
+  //   .catch((e) => {
+  //     alert(e.message);
+  //   });
 }
 
 loadAndShow();
