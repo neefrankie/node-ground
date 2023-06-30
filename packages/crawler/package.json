@@ -1,0 +1,12 @@
+{
+  "name": "crawler",
+  "packageManager": "yarn@3.6.0",
+  "scripts": {
+    "crawl": "ts-node src/index.ts"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "jsdom": "^22.1.0"
+  }
+}
