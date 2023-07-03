@@ -27,6 +27,7 @@
     "@types/multer": "^1.4.7",
     "@types/node": "^20.3.1",
     "@types/nunjucks": "^3.2.2",
+    "chokidar": "^3.5.3",
     "jest": "^29.5.0",
     "nodemon": "^2.0.22",
     "rollup": "^3.25.2",
