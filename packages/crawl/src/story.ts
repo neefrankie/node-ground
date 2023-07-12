@@ -13,7 +13,7 @@ async function readIDs(): Promise<string[]> {
 
 async function getContent(id: string): Promise<string> {
 
-  const url = `http://localhost:8100/contents/stories/${id}`;
+  const url = `http://localhost:8100/story/${id}`;
 
   const resp = await fetch(url, {
     method: 'GET',
@@ -38,8 +38,12 @@ async function saveStory(id: string, data: string) {
 async function crawlAndSave(id: string) {
   console.log(`Start getting story ${id}`);
 
-  const content = await getContent(id);
-  await saveStory(id, content);
+  try {
+    const content = await getContent(id);
+    await saveStory(id, content);
+  } catch (err) {
+    console.log(`Error crawling story ${id}`);
+  }
 }
 
 async function download() {
