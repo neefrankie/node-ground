@@ -1,7 +1,7 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, access, constants } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { resolve } from 'node:path';
-import { chunk } from 'lodash'
+import { chunk } from 'lodash';
 
 async function readIDs(): Promise<string[]> {
   const text = await readFile('ids.txt', { encoding: 'utf8'} );
@@ -11,7 +11,22 @@ async function readIDs(): Promise<string[]> {
   return ids
 }
 
-async function getContent(id: string): Promise<string> {
+function getFileName(id: string): string {
+  return resolve(homedir(), 'code/story', `${id}.json`)
+}
+
+async function fileExists(id: string): Promise<boolean> {
+  const name = getFileName(id);
+  try {
+    await access(name, constants.F_OK);
+    return true;
+  } catch {
+    console.log(`File not found: ${name}`);
+    return false;
+  }
+}
+
+async function fetchStory(id: string): Promise<string> {
 
   const url = `http://localhost:8100/story/${id}`;
 
@@ -30,7 +45,7 @@ async function getContent(id: string): Promise<string> {
 }
 
 async function saveStory(id: string, data: string) {
-  const fileName = resolve(homedir(), 'code/story', `${id}.json`)
+  const fileName = getFileName(id);
   await writeFile(fileName, data, {encoding: 'utf8'});
   console.log(`Saved file ${fileName}`);
 }
@@ -38,15 +53,20 @@ async function saveStory(id: string, data: string) {
 async function crawlAndSave(id: string) {
   console.log(`Start getting story ${id}`);
 
+  const found = await fileExists(id);
+  if (found) {
+    return;
+  }
+  
   try {
-    const content = await getContent(id);
+    const content = await fetchStory(id);
     await saveStory(id, content);
   } catch (err) {
     console.log(`Error crawling story ${id}`);
   }
 }
 
-async function download() {
+async function startCrawling() {
   const ids = await readIDs();
   const grouped = chunk(ids, 20);
 
@@ -55,5 +75,5 @@ async function download() {
   }
 }
 
-download()
+startCrawling()
   .catch(console.error);
