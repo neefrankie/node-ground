@@ -6,7 +6,7 @@ import { chunk } from 'lodash';
 async function readIDs(): Promise<string[]> {
   const text = await readFile('ids.txt', { encoding: 'utf8'} );
 
-  const ids = text.split('\n');
+  const ids = text.split('\n').filter(id => id !== '');
 
   return ids
 }
@@ -51,13 +51,13 @@ async function saveStory(id: string, data: string) {
 }
 
 async function crawlAndSave(id: string) {
-  console.log(`Start getting story ${id}`);
-
+  
   const found = await fileExists(id);
   if (found) {
     return;
   }
   
+  console.log(`Start getting story ${id}`);
   try {
     const content = await fetchStory(id);
     await saveStory(id, content);
