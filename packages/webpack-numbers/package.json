@@ -1,0 +1,14 @@
+{
+  "name": "webpack-numbers",
+  "packageManager": "yarn@3.6.0",
+  "scripts": {
+    "build": "webpack"
+  },
+  "main": "dist/webpack-numbers.js",
+  "module": "src/index.js",
+  "devDependencies": {
+    "lodash": "^4.17.21",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
