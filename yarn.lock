@@ -6290,14 +6290,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"crawler@workspace:packages/crawler":
-  version: 0.0.0-use.local
-  resolution: "crawler@workspace:packages/crawler"
-  dependencies:
-    jsdom: ^22.1.0
-  languageName: unknown
-  linkType: soft
-
 "create-require@npm:^1.1.0":
   version: 1.1.1
   resolution: "create-require@npm:1.1.1"
@@ -16215,6 +16207,16 @@ __metadata:
   checksum: 3a4ad0d0342a6815c850ee4633cc2a8a5dae04f918e7847f180bf24ab400803cf8a8943707ffbed03eb20fe6ce647f996f60a2aade87b0b4a9954da3da172ce0
   languageName: node
   linkType: hard
+
+"webpack-demo@workspace:packages/webpack-demo":
+  version: 0.0.0-use.local
+  resolution: "webpack-demo@workspace:packages/webpack-demo"
+  dependencies:
+    lodash: ^4.17.21
+    webpack: ^5.88.2
+    webpack-cli: ^5.1.4
+  languageName: unknown
+  linkType: soft
 
 "webpack-dev-middleware@npm:^5.3.1":
   version: 5.3.3
