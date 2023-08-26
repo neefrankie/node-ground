@@ -2,7 +2,7 @@
   "name": "crawler",
   "packageManager": "yarn@3.6.0",
   "scripts": {
-    "crawl": "ts-node src/index.ts"
+    "crawl": "ts-node src/bad-batch.ts"
   },
   "devDependencies": {
   },

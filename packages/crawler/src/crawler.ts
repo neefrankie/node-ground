@@ -1,4 +1,3 @@
-import { link } from 'fs';
 import { JSDOM } from 'jsdom';
 
 function extractAnchors(doc: string, container: string) {
@@ -36,6 +35,13 @@ async function download(url: string): Promise<string> {
   return doc;
 }
 
+export async function getAnchors(url: string, selector: string): Promise<string> {
+  const doc = await download(url);
+
+  const links = extractAnchors(doc, selector);
+
+  return links.join('\n');
+}
 
 if (require.main == module) {
   download('https://www.bt-tt.com/html/11/29092.html')
