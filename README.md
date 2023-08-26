@@ -3,10 +3,12 @@
 This is monorepo consists of:
 
 * auth-vue: a Vue.js app for authentication;
-* client: using vanilla js to demonstrate various bleeding-edge tools;
+* build-your-react: demonstrate how to build react from scratch
 * hello-js-react: demonstrate how to build React written in JS using webpack;
 * hello-ts-react: demonstrate how to build React written in TS using webpack;
+* rollup-demo: demonstrate how to configure rollup;
 * server: a simple express app.
+* svelte-demo: a svelte app demo.
 
 ## Editor Setup
 
