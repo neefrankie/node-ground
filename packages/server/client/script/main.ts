@@ -1,5 +1,6 @@
 import { AJAX } from './ajax';
 import { Progress } from './progress';
+import { handleLogin } from './login';
 
 const progress = new Progress('.progress .progress-bar');
 
@@ -173,3 +174,4 @@ function handleImages(files: FileList): HTMLUListElement {
 handleSelectFile();
 handleSubmit();
 dragAndDrop();
+handleLogin();
