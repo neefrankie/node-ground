@@ -1,6 +1,7 @@
 import { AJAX } from './ajax';
 import { Progress } from './progress';
 import { handleLogin } from './login';
+import { startWs } from './ws';
 
 const progress = new Progress('.progress .progress-bar');
 
@@ -175,3 +176,12 @@ handleSelectFile();
 handleSubmit();
 dragAndDrop();
 handleLogin();
+
+document.cookie = "test1=Hello; SameSite=None; Secure";
+document.cookie = "test2=World; SameSite=NOne; Secure";
+
+console.log(document.cookie);
+
+document.getElementById('wsBtn').addEventListener('click', () => {
+  startWs();
+});

@@ -2,6 +2,7 @@ import express from 'express';
 import { configure } from 'nunjucks';
 import { resolve } from 'path';
 import multer from 'multer';
+import ws from 'ws';
 import apiRouter from './api';
 
 const upload = multer({
@@ -53,6 +54,22 @@ app.put('/upload', upload.single('apk'), (req, res) => {
 
 app.use('/api', apiRouter);
 
-app.listen(port, () => {
-  console.log(`Example app listening on oprt ${port}`);
+const wsServer = new ws.Server({ noServer: true });
+
+wsServer.on('connection', socket => {
+  socket.on('error', console.error);
+
+  socket.on('message', message => console.log(message));
+
+  socket.send('something');
+});
+
+const server = app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
+server.on('upgrade', (request, socket, head) => {
+  wsServer.handleUpgrade(request, socket, head, socket => {
+    wsServer.emit('connection', socket, request);
+  });
 });
