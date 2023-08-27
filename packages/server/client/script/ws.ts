@@ -1,6 +1,6 @@
 export function startWs() {
   const socket = new WebSocket(
-    "wss://localhost:3000"
+    "ws://localhost:3000"
   );
 
   console.log(socket.readyState);
