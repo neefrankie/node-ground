@@ -9,7 +9,7 @@ type Task = {
 type Action = {
   id: number;
   text: string;
-  task: Task;
+  task?: Task;
   type: 'added' | 'changed' | 'deleted';
 };
 
@@ -28,7 +28,7 @@ function taskReducer(tasks: Task[], action: Action): Task[] {
 
     case 'changed': {
       return tasks.map((t) => {
-        if (t.id === action.task.id) {
+        if (action.task && t.id === action.task.id ) {
           return action.task;
         } else {
           return t
@@ -84,7 +84,6 @@ function TaskList(
     onDeleteTask: (id: number) => void;
   }
 ) {
-  const [editingId, setEditingId] = useState(-1);
 
   return (
     <ul>
@@ -114,76 +113,88 @@ function TaskListItem(
 
   return (
     <li>
-      <label>
-        <input type="checkbox" checked={props.task.done} />
+      <label className='d-flex'>
+        <input 
+          type="checkbox" 
+          checked={props.task.done} 
+          onChange={() => props.onChangeTask({
+            ...props.task, 
+            done: !props.task.done
+          })}
+        />
         {
           editing ?
           <input 
+            className='flex-fill'
             type="text" 
             value={text}
             onChange={(e) => setText(e.target.value)}
           /> :
-          props.task.text
+          <span className='flex-fill'>{props.task.text}</span>
         }
-        {
-          editing ?
-          <button
-            onClick={() => {
-              setEditing(false);
-              props.onChangeTask({
-                ...props.task,
-                text,
-              })
-            }}
+
+        <span>
+          {
+            editing ?
+            <button
+              onClick={() => {
+                setEditing(false);
+                props.onChangeTask({
+                  ...props.task,
+                  text,
+                })
+              }}
+              className='btn btn-primary'
+            >
+              Save
+            </button> :
+            <button
+              onClick={() => setEditing(true)}
+              className='btn btn-primary'
+            >
+              Edit
+            </button>
+          }
+          
+          <button 
+            onClick={() => props.onDeleteTask(props.task.id)}
+            className='btn btn-danger'
           >
-            Save
-          </button> :
-          <button
-            onClick={() => setEditing(true)}
-          >
-            Edit
-        </button>
-        }
-        
-        <button 
-          onClick={() => props.onDeleteTask(props.task.id)}
-        >
-          Delete
-        </button>
+            Delete
+          </button>
+        </span>
+
       </label>
     </li>
   );
 }
 
 export function TaskApp() {
-  const [tasks, setTasks] = useState(initialTasks);
-  // const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
+  const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
 
   function handleAddTask(text: string) {
-    setTasks([
-      ...tasks,
-      {
-        id: nextId++,
-        text: text,
-        done: false,
-      }
-    ]);
+    dispatch({
+      type: 'added',
+      id: nextId++,
+      text: text
+    });
   }
 
   function handleChangeTask(task: Task) {
-    setTasks(
-      tasks.map((t) => {
-        if (t.id === task.id) {
-          return task;
-        } else {
-          return t;
-        }
-      })
-    );
+    dispatch({
+      type: 'changed',
+      id: task.id,
+      text: task.text,
+      task: task,
+    });
   }
 
   function handleDeleteTask(taskId: number) {
-    setTasks(tasks.filter((t) => t.id !== taskId));
+    dispatch({
+      type: 'deleted',
+      id: taskId,
+      text: '',
+    });
   }
 
   return (
