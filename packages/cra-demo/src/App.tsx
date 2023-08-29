@@ -8,6 +8,7 @@ import { Messenger } from './learn/Chat';
 import { Hint } from './learn/Hint';
 import { SwapFields } from './learn/SwapFields';
 import { ContactManager } from './learn/EditContact';
+import { TaskApp } from './learn/ToDo';
 
 function App() {
   return (
@@ -41,6 +42,8 @@ function App() {
       <SwapFields />
 
       <ContactManager />
+
+      <TaskApp />
     </>
   );
 }
