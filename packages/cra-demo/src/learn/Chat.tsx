@@ -14,6 +14,8 @@ function Chat(
         value={text}
         placeholder={'Chat to ' + props.contact.name}
         onChange={e => setText(e.target.value)}
+        cols={30}
+        rows={10}
       />
       <br/>
       <button>Send to {props.contact.email}</button>
@@ -30,12 +32,18 @@ function ContactList(
 ) {
   return (
     <section className='contact-list'>
-      <ul>
+      <ul className='list-group'>
         {props.contacts.map(contact =>
-          <li key={contact.id}>
-            <button onClick={() => {
-              props.onSelect(contact)
-            }}>
+          <li 
+            key={contact.id}
+            className='list-group-item d-grid'
+          >
+            <button 
+              onClick={() => {
+                props.onSelect(contact)
+              }}
+              className='btn btn-light'
+            >
               {contact.name}
             </button>
           </li>
@@ -49,7 +57,7 @@ export function Messenger() {
   const [to, setTo] = useState(contacts[0]);
 
   return (
-    <div>
+    <div className='d-flex'>
       <ContactList
         contacts={contacts}
         selectedContact={to}
