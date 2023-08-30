@@ -10,6 +10,7 @@ import { SwapFields } from './learn/SwapFields';
 import { ContactManager } from './learn/EditContact';
 import { TaskApp } from './learn/ToDo';
 import { Messenger as Messenger2 } from './learn/Chat2'
+import { Page } from './learn/LevelContext';
 
 function App() {
   return (
@@ -47,6 +48,8 @@ function App() {
       <TaskApp />
 
       <Messenger2 />
+
+      <Page />
     </>
   );
 }
