@@ -78,9 +78,9 @@ function createConnect(
     },
 
     on(event: string, callback: () => void) {
-      if (connectedCallback) {
-        throw Error('Cannot add the handler twice.');
-      }
+      // if (connectedCallback) {
+      //   throw Error('Cannot add the handler twice.');
+      // }
       if (event !== 'connected') {
         throw Error('Only "connected" event is supported.');
       }
