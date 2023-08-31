@@ -6,23 +6,27 @@ export function CountDown(
   }
 ) {
   const [counting, setCounting] = useState(false);
+  const [now, setNow] = useState(props.start);
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
-  const [elapsed, setElapsed] = useState(0);
 
   function handleStart() {
     setCounting(true);
-    setElapsed(0);
+    setNow(props.start);
+    
+    // Capture the initial start time and then mutate it.
+    let startFrom = props.start;
 
     intervalRef && clearInterval(intervalRef.current);
 
+    // Note: state variables used cannot be updated here.
     intervalRef.current = setInterval(() => {
 
-      if (elapsed >= props.start) {
+      if (startFrom <= 0) {
         handleStop();
         return;
       }
 
-      setElapsed(elapsed+1);
+      setNow(startFrom--);
     }, 1000);
   }
 
@@ -30,8 +34,6 @@ export function CountDown(
     intervalRef && clearInterval(intervalRef.current);
     setCounting(false);
   }
-
-  let now = props.start - elapsed;
 
   if (counting) {
     return (
