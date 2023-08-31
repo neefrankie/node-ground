@@ -56,7 +56,7 @@ function App() {
 
       <StatusApp />
 
-      <CountDown start={60} />
+      <CountDown start={5} />
 
       <StopWatch />
     </>

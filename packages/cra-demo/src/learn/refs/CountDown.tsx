@@ -12,21 +12,29 @@ export function CountDown(
   function handleStart() {
     setCounting(true);
     setNow(props.start);
-    
-    // Capture the initial start time and then mutate it.
-    let startFrom = props.start;
 
     intervalRef && clearInterval(intervalRef.current);
+
+    // Another approach is to capture the initial start time and then mutate it.
+    // let startFrom = props.start;
 
     // Note: state variables used cannot be updated here.
     intervalRef.current = setInterval(() => {
 
-      if (startFrom <= 0) {
-        handleStop();
-        return;
-      }
+      // if (startFrom <= 0) {
+      //   handleStop();
+      //   return;
+      // }
 
-      setNow(startFrom--);
+      // setNow(startFrom--);
+
+      setNow(last => {
+        if (last <= 0) {
+          handleStop();
+          return 0;
+        }
+        return last - 1;
+      });
     }, 1000);
   }
 
