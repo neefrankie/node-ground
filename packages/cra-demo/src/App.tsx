@@ -14,6 +14,9 @@ import { Page } from './learn/LevelContext';
 import { StatusApp } from './learn/hooks/StatusBar';
 import { CountDown } from './learn/refs/CountDown';
 import { StopWatch } from './learn/refs/StopWatch';
+import { RecoilRoot } from 'recoil';
+import { CharacterCounter } from './learn/globalstate/CharacterCounter';
+import { TodoList } from './learn/globalstate/ToDoList';
 
 function App() {
   return (
@@ -59,6 +62,12 @@ function App() {
       <CountDown start={5} />
 
       <StopWatch />
+
+      <RecoilRoot>
+        <CharacterCounter />
+
+        <TodoList />
+      </RecoilRoot>
     </>
   );
 }
