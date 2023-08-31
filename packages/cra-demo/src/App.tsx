@@ -12,6 +12,8 @@ import { TaskApp } from './learn/ToDo';
 import { Messenger as Messenger2 } from './learn/Chat2'
 import { Page } from './learn/LevelContext';
 import { StatusApp } from './learn/hooks/StatusBar';
+import { CountDown } from './learn/refs/CountDown';
+import { StopWatch } from './learn/refs/StopWatch';
 
 function App() {
   return (
@@ -53,6 +55,10 @@ function App() {
       <Page />
 
       <StatusApp />
+
+      <CountDown start={60} />
+
+      <StopWatch />
     </>
   );
 }

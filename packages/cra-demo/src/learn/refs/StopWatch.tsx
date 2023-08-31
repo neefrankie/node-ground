@@ -12,6 +12,8 @@ export function StopWatch() {
     intervalRef && clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
+      // You cannot use any state variables here.
+      // The won't be updated.
       setNow(Date.now());
     }, 10);
   }
