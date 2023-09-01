@@ -1,0 +1,145 @@
+.rotate-demo {
+  position: relative;
+  height: 300px;
+
+  div {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+  }
+
+  .rotate {
+    background-color: transparent;
+    outline: 2px dashed;
+    transform: rotate(45deg);
+  }
+  
+  /* Pay attention to the orders */
+  .rotate-translate {
+    background-color: pink;
+    transform: rotate(45deg) translateX(180px);
+  }
+  
+  .translate-rotate {
+    background-color: gold;
+    transform: translateX(180px) rotate(45deg);
+  }
+}
+
+.rotatex-demo {
+  div {
+    width: 80px;
+    height: 80px;
+    background-color: skyblue;
+  }
+
+  .rotated-x {
+    transform: rotateX(45deg);
+    background-color: pink;
+  }
+}
+
+.rotatey-demo {
+  div {
+    width: 80px;
+    height: 80px;
+    background-color: skyblue;
+  }
+
+  .rotated-y {
+    transform: rotateY(60deg);
+    background-color: pink;
+  }
+}
+
+.scale-demo {
+  div {
+    width: 80px;
+    height: 80px;
+    background-color: skyblue;
+  }
+
+  .scaled {
+    transform: scale(2, 0.5);
+    background-color: pink;
+  }
+}
+
+.skew-demo {
+  div {
+    width: 80px;
+    height: 80px;
+    background-color: skyblue;
+  }
+
+  .skewed {
+    transform: skew(10deg, 10deg);
+    background-color: pink;
+  }
+}
+
+.translate-demo {
+  div {
+    width: 60px;
+    height: 60px;
+    background-color: skyblue;
+  }
+
+  .moved {
+    transform: translate(10px, 10px);
+    background-color: pink;
+  }
+}
+
+.slidein {
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  /* 75% {
+    font-size: 300%;
+    margin-left: 25%;
+    width: 150%;
+  } */
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.spinner {
+  border: 2px solid;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border-right-color: transparent;
+
+  animation-duration: 1s;
+  animation-name: spinner;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
