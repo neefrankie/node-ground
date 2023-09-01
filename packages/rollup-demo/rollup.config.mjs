@@ -30,7 +30,7 @@ export default {
     }),
     !production && liverealod({
       // By default, it watches the current directory.
-      watch:['public', 'build'],
+      watch:['public', 'build/**'],
     }),
   ]
 };
