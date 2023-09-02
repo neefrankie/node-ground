@@ -7,11 +7,15 @@ import cssnano from 'cssnano';
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-  input: 'client/main.js',
+  input: [
+    'client/scripts/animate.js', 
+    'client/scripts/transition.js'
+  ],
   output: {
-    file: 'build/bundle.js',
-    format: 'iife',
-    
+    // file: 'build/bundle.js',
+    // format: 'iife',
+    dir: 'build/scripts',
+    entryFileNames: '[name].js'
   },
   plugins: [
     babel({
