@@ -1,3 +1,4 @@
+/* Transform examples */
 .rotate-demo {
   position: relative;
   height: 300px;
@@ -94,6 +95,7 @@
   }
 }
 
+/* Animation examples */
 .slidein {
   animation-duration: 3s;
   animation-name: slidein;
@@ -141,5 +143,4 @@
     transform: rotate(360deg);
   }
 }
-
 
