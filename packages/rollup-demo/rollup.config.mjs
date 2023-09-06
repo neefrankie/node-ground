@@ -9,7 +9,8 @@ const production = !process.env.ROLLUP_WATCH;
 export default {
   input: [
     'client/scripts/animate.js', 
-    'client/scripts/transition.js'
+    'client/scripts/transition.js',
+    'client/scripts/html-element.js',
   ],
   output: {
     // file: 'build/bundle.js',
@@ -18,9 +19,9 @@ export default {
     entryFileNames: '[name].js'
   },
   plugins: [
-    babel({
-      babelHelpers: 'bundled'
-    }),
+    // babel({
+    //   babelHelpers: 'bundled'
+    // }),
     // postcss({
     //   plugins: [
     //     production && cssnano({
