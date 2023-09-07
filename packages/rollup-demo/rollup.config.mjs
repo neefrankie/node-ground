@@ -11,6 +11,7 @@ export default {
     'client/scripts/animate.js', 
     'client/scripts/transition.js',
     'client/scripts/html-element.js',
+    'client/scripts/canvas.js',
   ],
   output: {
     // file: 'build/bundle.js',
