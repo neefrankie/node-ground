@@ -12,6 +12,7 @@ export default {
     'client/scripts/transition.js',
     'client/scripts/html-element.js',
     'client/scripts/canvas.js',
+    'client/scripts/webgl.js',
   ],
   output: {
     // file: 'build/bundle.js',
