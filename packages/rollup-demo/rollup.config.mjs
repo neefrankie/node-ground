@@ -13,6 +13,7 @@ export default {
     'client/scripts/html-element.js',
     'client/scripts/canvas.js',
     'client/scripts/webgl.js',
+    'client/scripts/cross-site.js',
   ],
   output: {
     // file: 'build/bundle.js',

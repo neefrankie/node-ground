@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Header } from '@nestjs/common';
 
 type ICat = {
   id: number;
@@ -14,6 +14,7 @@ export class CatsController {
   }
 
   @Get()
+  @Header('Access-Control-Allow-Origin', '*')
   findAll(): ICat[] {
     return [
       {
