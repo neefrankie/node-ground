@@ -34,11 +34,11 @@ export default {
     //   extract: true,
     // }),
     !production && serve({
-      contentBase: ['public', 'build']
+      contentBase: ['public', 'client']
     }),
     !production && liverealod({
       // By default, it watches the current directory.
-      watch:['public', 'build/**'],
+      watch:['public', 'client/**'],
     }),
   ]
 };
