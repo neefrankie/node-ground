@@ -12910,9 +12910,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-ground@workspace:packages/server":
+"node-ground@workspace:packages/express-demo":
   version: 0.0.0-use.local
-  resolution: "node-ground@workspace:packages/server"
+  resolution: "node-ground@workspace:packages/express-demo"
   dependencies:
     "@rollup/plugin-terser": ^0.4.3
     "@rollup/plugin-typescript": ^11.1.3
