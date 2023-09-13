@@ -17,6 +17,7 @@ import { StopWatch } from './learn/refs/StopWatch';
 import { RecoilRoot } from 'recoil';
 import { CharacterCounter } from './learn/globalstate/CharacterCounter';
 import { TodoList } from './learn/globalstate/ToDoList';
+import { Game } from './tutorial/Board';
 
 function App() {
   return (
@@ -68,6 +69,8 @@ function App() {
 
         <TodoList />
       </RecoilRoot>
+
+      <Game />
     </>
   );
 }
