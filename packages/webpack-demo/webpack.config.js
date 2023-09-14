@@ -13,6 +13,7 @@ module.exports = (env) => {
     entry: {
       index: './src/index.js',
       print: './src/print.js',
+      web3: './src/web3.js'
       // another: './src/another-module.js'
       // index: {
       //   import: './src/index.js',
