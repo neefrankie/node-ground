@@ -15,3 +15,43 @@ code {
 ul {
   list-style-type: none;
 }
+
+:root {
+  --btn-padding-x: .375rem;
+  --btn-padding-y: .75rem;
+  --btn-padding-x-sm: .5rem;
+  --btn-padding-y-sm: .25rem;
+  --btn-padding-x-lg: 1rem;
+  --btn-padding-y-lg: .5rem;
+
+  --white: #fff;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --black:    #000;
+
+  --border-width: 1px;
+
+  --border-radius: .375rem;
+  --border-radius-sm: .25rem;
+  --border-radius-lg: .5rem;
+  --border-radius-xl: 1rem;
+  --border-radius-xxl: 2rem;
+  --border-radius-pill: 50rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  color: var(--gray-900);
+  text-align: center;
+  vertical-align: middle;
+  border: var(--border-width) solid var(--border-width);
+  border-radius: var(--border-radius);
+}
