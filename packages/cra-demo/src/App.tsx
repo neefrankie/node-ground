@@ -18,6 +18,7 @@ import { RecoilRoot } from 'recoil';
 import { CharacterCounter } from './learn/globalstate/CharacterCounter';
 import { TodoList } from './learn/globalstate/ToDoList';
 import { Game } from './tutorial/Board';
+import { ThemeApp } from './legacy/MyContext';
 
 function App() {
   return (
@@ -71,6 +72,8 @@ function App() {
       </RecoilRoot>
 
       <Game />
+
+      <ThemeApp />
     </>
   );
 }
