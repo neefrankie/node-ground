@@ -9,6 +9,7 @@ import {
   Put,
   Delete,
   HttpStatus,
+  HttpException,
 } from '@nestjs/common';
 import { Response } from 'express';
 import {
@@ -34,7 +35,8 @@ export class CatsController {
   @Get()
   @Header('Access-Control-Allow-Origin', '*')
   async findAll(): Promise<Cat[]> {
-    return this.catsService.findAll();
+    // return this.catsService.findAll();
+    throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
   }
 
   @Put(':id')
