@@ -6,14 +6,9 @@
     "badbatch": "ts-node src/bad-batch.ts"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.197",
     "@types/node": "^20.5.7",
     "ts-node": "^10.9.1",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "jsdom": "^22.1.0",
-    "lodash": "^4.17.21"
   }
 }
