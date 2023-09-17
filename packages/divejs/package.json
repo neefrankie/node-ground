@@ -17,7 +17,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "graphql": "^16.8.0",
     "jsdom": "^22.1.0",
     "lodash": "^4.17.21"
   }
