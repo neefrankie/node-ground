@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "rootDirs": ["src"],
+    "noImplicitAny": true,
+    // Do not set to CommonJS, or webpack won't be able to tree-shake.
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "sourceMap": true
+  }
+}
