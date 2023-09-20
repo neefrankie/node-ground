@@ -1,8 +1,9 @@
 import liverealod from 'rollup-plugin-livereload';
 import serve from 'rollup-plugin-serve';
-import { babel } from '@rollup/plugin-babel';
+import typescript from '@rollup/plugin-typescript';
+// import { babel } from '@rollup/plugin-babel';
 // import postcss from 'rollup-plugin-postcss';
-import cssnano from 'cssnano';
+// import cssnano from 'cssnano';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -14,6 +15,7 @@ export default {
     'client/scripts/canvas.js',
     'client/scripts/webgl.js',
     'client/scripts/cross-site.js',
+    'client/scripts/my-canvas.ts',
   ],
   output: {
     // file: 'build/bundle.js',
@@ -22,6 +24,12 @@ export default {
     entryFileNames: '[name].js'
   },
   plugins: [
+    // When using this plugin, tsconfig.json cannot have this option:  
+      // "outDir": "../build/ts-out"
+      // See https://github.com/rollup/plugins/issues/287
+      typescript({
+        tsconfig: './tsconfig.json' // relative to process.cwd().
+      }),
     // babel({
     //   babelHelpers: 'bundled'
     // }),
@@ -34,11 +42,11 @@ export default {
     //   extract: true,
     // }),
     !production && serve({
-      contentBase: ['public', 'client']
+      contentBase: ['public', 'build']
     }),
     !production && liverealod({
       // By default, it watches the current directory.
-      watch:['public', 'client/**'],
+      watch:['public', 'build/**'],
     }),
   ]
 };
