@@ -8,7 +8,8 @@ function Panel(
     onShow: () => void;
   }
 ) {
-  const [isActive, setIsActive] = useState(false);
+
+  console.log('Render Panel');
 
   return (
     <section className="panel">
@@ -28,6 +29,9 @@ function Panel(
 
 export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [counter, setCounter] = useState(0);
+
+  console.log('Render Accordion');
 
   return (
     <>
@@ -48,6 +52,10 @@ export default function Accordion() {
         The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
         </>
       </Panel>
+
+      <div>
+        <button onClick={() => {setCounter(counter+1)}}>{counter}</button>
+      </div>
     </>
   );
 }
