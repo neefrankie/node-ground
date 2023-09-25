@@ -7851,7 +7851,9 @@ __metadata:
     "@types/react-dom": ^18.2.7
     "@types/toastify-js": ^1.12.0
     eslint: ^8.48.0
+    eslint-config-prettier: ^9.0.0
     eslint-config-react-app: ^7.0.1
+    prettier: ^3.0.3
     react: ^18.2.0
     react-dom: ^18.2.0
     react-scripts: 5.0.1
@@ -16944,7 +16946,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.0.0":
+"prettier@npm:^3.0.0, prettier@npm:^3.0.3":
   version: 3.0.3
   resolution: "prettier@npm:3.0.3"
   bin:
