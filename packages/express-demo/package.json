@@ -9,7 +9,7 @@
     "watch-test": "jest --watch",
     "postversion": "git push && git push --tags",
     "clean": "rm -rf build/*",
-    "serve": "nodemon",
+    "server": "nodemon",
     "swc": "swc script/main.ts -o build/script/swc-build.js -w",
     "spack": "spack",
     "esbuild": "esbuild script/main.ts --bundle --sourcemap --outfile=build/script/main.js --watch",
