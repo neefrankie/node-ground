@@ -3,6 +3,7 @@ import { configure } from 'nunjucks';
 import { resolve } from 'path';
 import ws from 'ws';
 import apiRouter from './api';
+import uploadRouter from './upload';
 
 const app = express();
 const port = 3000;
@@ -34,6 +35,10 @@ app.get('/', (req, res) => {
       {
         name: 'Upload',
         url: '/upload'
+      },
+      {
+        name: 'MathJax',
+        url: '/mathjax'
       }
     ]
   });
@@ -42,6 +47,12 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
   res.render('login.html');
 });
+
+app.get('/upload', uploadRouter)
+
+app.get('/mathjax', (req, res) => {
+  res.render('mathjax.html', {title: 'MathJax Playground'})
+})
 
 app.get('/admin', (req, res) => {
   res.render('admin.html');
