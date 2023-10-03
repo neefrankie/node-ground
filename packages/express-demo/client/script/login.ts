@@ -48,7 +48,7 @@ function startLogin(formData: FormData) {
     });
 }
 
-export function handleLogin() {
+function handleLogin() {
   const formEl = document.getElementById('loginForm') as HTMLFormElement;
 
   formEl.addEventListener('submit', (event) => {
@@ -64,3 +64,5 @@ export function handleLogin() {
     startLogin(formData);
   });
 }
+
+handleLogin()

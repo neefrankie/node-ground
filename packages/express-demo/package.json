@@ -10,9 +10,6 @@
     "postversion": "git push && git push --tags",
     "clean": "rm -rf build/*",
     "server": "nodemon",
-    "swc": "swc script/main.ts -o build/script/swc-build.js -w",
-    "spack": "spack",
-    "esbuild": "esbuild script/main.ts --bundle --sourcemap --outfile=build/script/main.js --watch",
     "rollup": "rollup -c -w"
   },
   "dependencies": {

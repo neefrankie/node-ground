@@ -1,4 +1,4 @@
-export function startWs() {
+function startWs() {
   const socket = new WebSocket(
     "ws://localhost:3000"
   );
@@ -21,3 +21,7 @@ export function startWs() {
     console.log("Mesage from server ", event.data);
   });
 }
+
+document.getElementById('wsBtn').addEventListener('click', () => {
+  startWs();
+});

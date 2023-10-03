@@ -7,10 +7,16 @@ const production = !process.env.ROLLUP_WATCH;
 
 export default defineConfig([
   {
-    input: "./client/script/main.ts",
+    input: [
+      'client/script/login.ts',
+      'client/script/upload.ts',
+      'client/script/ws.ts'
+    ],
     output: {
-      file: "./build/script/main.js",
-      format: "iife",
+      // file: "./build/script/main.js",
+      // format: "iife",
+      dir: 'build/script',
+      entryFileNames: '[name].js',
       sourcemap: true,
     },
     plugins: [
