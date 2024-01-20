@@ -7,9 +7,10 @@
     "test": "jest",
     "watch-test": "jest --watch",
     "start": "nodemon",
-    "watch": "webpack --watch",
-    "serve": "webpack serve --open",
-    "build": "webpack",
+    "watchjs": "webpack --watch --config webpack.server.js",
+    "servejs": "webpack serve --open",
+    "buildjs": "webpack",
+    "prodjs": "webpack --mode production",
     "clean": "rm -rf build/*"
   },
   "keywords": [],

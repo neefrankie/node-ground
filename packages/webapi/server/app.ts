@@ -20,9 +20,10 @@ configure(
   }
 );
 
-app.use(express.static(resolve(__dirname, '../build')));
+app.use(express.static(resolve(__dirname, '../dist')));
 
 app.get('/', (req, res) => {
+
   res.render('index.html', {
     list: [
       {
