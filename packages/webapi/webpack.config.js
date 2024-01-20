@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/canvas.ts',
-    upload: './src/upload.ts',
+    index: './src/index.ts',
+    canvas: './src/canvas.ts',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -20,9 +20,10 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'test.html',
+      template: "./src/assets/test.html",
       title: 'Test',
       inject: 'body',
-      template: "./src/assets/test.html"
+      chunks: ['canvas']
     })
   ],
   output: {
