@@ -44,7 +44,7 @@ module.exports = {
 }
 ```
 
-It serves bundled files from the directory defined in output.path. Files will available under `http://[devServer.host]:[devServer.port]/[output.publicPath]/[outpuf.filename]`
+It serves bundled files from the directory defined in output.path. Files will available under `http://[devServer.host]:[devServer.port]/[output.publicPath]/[output.filename]`
 
 It doesn't write any output files after compiling. It keeps bundle files in memory and serves them as if they were real files mounted at the server's root path.
 
