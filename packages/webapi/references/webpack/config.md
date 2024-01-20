@@ -159,19 +159,4 @@ module.exports = {
 
 The app chunk will not contain the modules that `react-vendors` have.
 
-## Mode
-
-`string = 'produciton' | 'development'`
-
-```js
-module.exports = {
-    mode: 'development'
-}
-```
-
-Or pass it as a CLI arg:
-
-```sh
-webpack --mode=development
-```
 
