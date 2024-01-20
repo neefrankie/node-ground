@@ -1,0 +1,50 @@
+{% extends "layouts/center.html" %}
+
+{% block content %}
+<section>
+  <h4 class="text-center">File Uploader</h4>
+  
+  <form method="post" 
+    enctype="multipart/form-data" 
+    id="fileForm" 
+    action="/upload"
+  >
+    <div class="mb-3">
+      <label 
+        for="formFile" 
+        class="form-label"
+      >
+        File input example
+      </label>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <input 
+        class="form-control" 
+        type="file" 
+        id="formFile"
+        multiple
+      >
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+  </form>
+
+  <canvas id="progress" width="300" height="30" class="border"></canvas>
+
+  <div class="preview"></div>
+
+  <h4>Drag & Drop</h4>
+  <div id="dropbox" class="shadow-none p-3 mb-5 bg-light rounded border">
+    <div id="gallery">
+      Drop a file here
+    </div>
+  </div>
+  
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script src="/script/upload.js"></script>
+{% endblock %}

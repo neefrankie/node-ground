@@ -1,0 +1,14 @@
+{
+  "ext": "ts",
+  "exec": "ts-node server/app.ts",
+  "ignore": [
+    "src/**",
+    "build/**",
+    "test/**"
+  ],
+  "env": {
+    "NODE_ENV": "development",
+    "DEBUG": "express:*"
+  },
+  "verbose": true
+}
