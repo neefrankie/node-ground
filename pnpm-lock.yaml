@@ -77,6 +77,46 @@ importers:
         specifier: ^7.22.5
         version: 7.23.3(@babel/core@7.23.7)
 
+  packages/db-prisma:
+    devDependencies:
+      '@faker-js/faker':
+        specifier: ^8.0.2
+        version: 8.3.1
+      '@types/node':
+        specifier: ^20.6.2
+        version: 20.11.5
+      prisma:
+        specifier: ^5.3.1
+        version: 5.8.1
+      ts-node:
+        specifier: ^10.9.1
+        version: 10.9.2(@types/node@20.11.5)(typescript@5.3.3)
+      typescript:
+        specifier: ^5.2.2
+        version: 5.3.3
+
+  packages/db-typeorm:
+    dependencies:
+      mysql:
+        specifier: ^2.14.1
+        version: 2.18.1
+      reflect-metadata:
+        specifier: ^0.1.13
+        version: 0.1.14
+      typeorm:
+        specifier: 0.3.17
+        version: 0.3.17(ts-node@10.7.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^16.11.10
+        version: 16.18.71
+      ts-node:
+        specifier: 10.7.0
+        version: 10.7.0(@types/node@16.18.71)(typescript@4.5.2)
+      typescript:
+        specifier: 4.5.2
+        version: 4.5.2
+
   packages/divejs:
     dependencies:
       jsdom:
@@ -388,6 +428,12 @@ importers:
       nunjucks:
         specifier: ^3.2.4
         version: 3.2.4(chokidar@3.5.3)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
       ws:
         specifier: ^8.13.0
         version: 8.16.0
@@ -404,6 +450,12 @@ importers:
       '@types/nunjucks':
         specifier: ^3.2.3
         version: 3.2.6
+      '@types/react':
+        specifier: ^18.2.48
+        version: 18.2.48
+      '@types/react-dom':
+        specifier: ^18.2.18
+        version: 18.2.18
       '@types/webpack':
         specifier: ^5.28.5
         version: 5.28.5(webpack-cli@5.1.4)
@@ -422,6 +474,9 @@ importers:
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.11.5)(ts-node@10.9.2)
+      mini-css-extract-plugin:
+        specifier: ^2.7.6
+        version: 2.7.7(webpack@5.89.0)
       nodemon:
         specifier: ^3.0.1
         version: 3.0.3
@@ -3896,7 +3951,7 @@ packages:
       webpack-cli: 5.x.x
     dependencies:
       webpack: 5.89.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-dev-server@4.15.1)(webpack@5.89.0)
+      webpack-cli: 5.1.4(webpack@5.89.0)
     dev: true
 
   /@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.89.0):
@@ -3907,7 +3962,7 @@ packages:
       webpack-cli: 5.x.x
     dependencies:
       webpack: 5.89.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-dev-server@4.15.1)(webpack@5.89.0)
+      webpack-cli: 5.1.4(webpack@5.89.0)
     dev: true
 
   /@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack-dev-server@4.15.1)(webpack@5.89.0):
@@ -11328,7 +11383,7 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.10(webpack@5.89.0)
       watchpack: 2.4.0
-      webpack-cli: 5.1.4(webpack-dev-server@4.15.1)(webpack@5.89.0)
+      webpack-cli: 5.1.4(webpack@5.89.0)
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'

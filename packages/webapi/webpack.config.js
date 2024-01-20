@@ -1,30 +1,47 @@
+const prod = process.env.NODE_ENV === 'production';
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: prod ? 'production' : 'development',
   entry: {
-    index: './src/index.ts',
+    login: './src/login.tsx',
     canvas: './src/canvas.ts',
+    upload: './src/upload.ts',
   },
   devtool: 'inline-source-map',
   devServer: {
-    static: './dist'
+    static: './dist',
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Canvas',
+      title: 'Login',
+      template: './assets/index.html',
       inject: 'body',
-      chunks: ['index'], // Add only index chunk
-      hash: true, // Append compilation hash `?has=xxx`
+      chunks: ['login'], // Add only index chunk
+      hash: true, // Append compilation hash `?hash=xxx`
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Upload',
+      filename: 'upload.html',
+      template: './assets/index.html',
+      inject: 'body',
+      chunks: ['upload'], // Add only index chunk
+      hash: true, // Append compilation hash `?hash=xxx`
     }),
     new HtmlWebpackPlugin({
       filename: 'test.html',
-      template: "./src/assets/test.html",
+      template: "./assets/test.html",
       title: 'Test',
       inject: 'body',
       chunks: ['canvas']
-    })
+    }),
+    new MiniCssExtractPlugin(),
   ],
   output: {
     filename: '[name].bundle.js',
@@ -35,13 +52,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts?$/,
+        test: /\.ts|tsx$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+        resolve: {
+          extensions: ['.ts', '.tsx', '.js', '.json'],
+        },
       },
       {
-        test: /\.css/i,
-        use: ['style-loader', 'css-loader']
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader,'style-loader', 'css-loader']
       }
     ]
   },

@@ -28,9 +28,6 @@ function startLogin(formData: FormData) {
   fetch('/api/login', {
       method: 'POST',
       body: formData,
-      // headers: {
-      //   'Content-Type': 'multipart/form-data',
-      // },
       redirect: 'follow',
     })
     .then(resp => {
