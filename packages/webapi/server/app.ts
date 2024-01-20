@@ -2,7 +2,7 @@ import express from 'express';
 import { configure } from 'nunjucks';
 import { resolve } from 'path';
 import ws from 'ws';
-import apiRouter from './api';
+import loginRouter from './login';
 import uploadRouter from './upload';
 
 const app = express();
@@ -11,7 +11,7 @@ const port = 3000;
 // Configure nunjucks template engine.
 configure(
   [
-    resolve(__dirname, "../views"), // Tempalate search path
+    resolve(__dirname, "views"), // Tempalate search path
   ],
   {
     noCache: process.env.NODE_ENV === "development",
@@ -20,9 +20,6 @@ configure(
   }
 );
 
-// Serve static file for bootstrap from node_modules.
-// How to serve bootstrap from yarn 2?
-// app.use(express.static(resolve(__dirname, '../node_modules/bootstrap/dist/css')));
 app.use(express.static(resolve(__dirname, '../build')));
 
 app.get('/', (req, res) => {
@@ -44,21 +41,13 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/login', (req, res) => {
-  res.render('login.html');
-});
 
-app.get('/upload', uploadRouter)
+app.use('/login', loginRouter);
+app.use('/upload', uploadRouter);
 
 app.get('/mathjax', (req, res) => {
   res.render('mathjax.html', {title: 'MathJax Playground'})
-})
-
-app.get('/admin', (req, res) => {
-  res.render('admin.html');
 });
-
-app.use('/api', apiRouter);
 
 const wsServer = new ws.Server({ noServer: true });
 

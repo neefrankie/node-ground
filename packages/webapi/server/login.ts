@@ -1,18 +1,14 @@
 import { Router } from 'express';
-import multer from 'multer';
+import multer from 'multer'
 
 const router = Router();
 const upload = multer();
 
-
 router.get('/', (req, res) => {
-  res.send({
-    name: '/api',
-    description: 'Hello, this is app api',
-  });
-});
+  res.render('login.html');
+})
 
-router.post('/login', upload.none(), (req, res) => {
+router.post('/', upload.none(), (req, res) => {
   console.log(req.body);
   
   res
