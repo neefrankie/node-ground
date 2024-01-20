@@ -20,8 +20,9 @@
     }
   },
   "include": [
-      "server/**/*"
-  ],
+      "server/**/*",
+      "src/**/*"
+, "webpack.config.ts"  ],
   "exclude": [
     "package.json"
   ],
