@@ -72,3 +72,4 @@ dist
 
 *.db
 *.sqlite
+config/
