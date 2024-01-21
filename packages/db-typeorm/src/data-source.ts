@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 import { User } from "./entity/User";
 import { Photo } from './entity/Photo';
 import { getMySQLConn } from './config';
+import { PhotoMeta } from './entity/PhotoMeta';
 
 const dbConfig = getMySQLConn();
 
@@ -15,7 +16,7 @@ export const AppDataSource = new DataSource({
     database: "typeorm",
     synchronize: true,
     logging: false,
-    entities: [User, Photo],
+    entities: [User, Photo, PhotoMeta],
     migrations: [],
     subscribers: [],
 })
