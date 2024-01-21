@@ -352,6 +352,9 @@ importers:
       '@types/express':
         specifier: ^4.17.17
         version: 4.17.21
+      '@types/jest':
+        specifier: ^29.5.4
+        version: 29.5.11
       '@types/multer':
         specifier: ^1.4.7
         version: 1.4.11
@@ -394,6 +397,9 @@ importers:
       style-loader:
         specifier: ^3.3.3
         version: 3.3.4(webpack@5.89.0)
+      ts-jest:
+        specifier: ^29.1.1
+        version: 29.1.1(@babel/core@7.23.7)(jest@29.7.0)(typescript@5.3.3)
       ts-loader:
         specifier: ^9.5.1
         version: 9.5.1(typescript@5.3.3)(webpack@5.89.0)
@@ -3873,7 +3879,7 @@ packages:
       webpack-cli: 5.x.x
     dependencies:
       webpack: 5.89.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-dev-server@4.15.1)(webpack@5.89.0)
+      webpack-cli: 5.1.4(webpack@5.89.0)
     dev: true
 
   /@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.89.0):
@@ -3884,7 +3890,7 @@ packages:
       webpack-cli: 5.x.x
     dependencies:
       webpack: 5.89.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-dev-server@4.15.1)(webpack@5.89.0)
+      webpack-cli: 5.1.4(webpack@5.89.0)
     dev: true
 
   /@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack-dev-server@4.15.1)(webpack@5.89.0):
@@ -11324,7 +11330,7 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.10(webpack@5.89.0)
       watchpack: 2.4.0
-      webpack-cli: 5.1.4(webpack-dev-server@4.15.1)(webpack@5.89.0)
+      webpack-cli: 5.1.4(webpack@5.89.0)
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
