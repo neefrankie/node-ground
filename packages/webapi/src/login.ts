@@ -1,28 +1,3 @@
-function createFeedback(msg: string, valid: boolean): HTMLElement {
-  const elem = document.createElement('div');
-  elem.className = valid ? 'valid-feedback' : 'invalid-feedback';
-
-  const content = document.createTextNode(msg);
-
-  elem.appendChild(content);
-
-  return elem;
-}
-
-function insertAfter(newNode: Node, existingNode: Node) {
-  existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
-}
-
-function addFeedback(inputEl: HTMLInputElement, msg: string, valid: boolean) {
-  inputEl.classList.remove('is-valid');
-  inputEl.classList.remove('is-invalid');
-  inputEl.classList.add(valid ? 'is-valid' : 'is-invalid');
-
-  const fbEl = createFeedback(msg, valid);
-
-  insertAfter(inputEl, fbEl)
-}
-
 function startLogin(formData: FormData) {
 
   fetch('/api/login', {
