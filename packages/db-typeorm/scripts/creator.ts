@@ -77,6 +77,10 @@ export class DbCreator {
     console.log(results);
     console.log(fields);
   }
+
+  async close() {
+    await this.conn.end();
+  }
 }
 
 async function main() {
@@ -86,6 +90,8 @@ async function main() {
 
   await c.dropDb(dbName);
   await c.createDb(dbName);
+
+  await c.close();
 }
 
 if (require.main === module) {
