@@ -1,27 +1,29 @@
 import { Router } from 'express';
 import multer from 'multer'
+import bodyParser from 'body-parser';
 import { User } from '../entity/User';
 import { userStore } from './store';
 import { Credentials, SignupParams } from '../model/form-data';
+import { ResponseError } from './response-errot';
 
 const router = Router();
 const upload = multer();
 
-router.post('/login', upload.none(), (req, res) => {
+router.use(bodyParser.json());
+
+router.post('/login', (req, res) => {
   console.log(req.body);
   const credentials: Credentials = req.body;
 
   const user = userStore.findByEmail(credentials.email);
 
   if (!user) {
-    // TODO: handle error
-    return;
+    throw ResponseError.fobidden('user not found');
   }
   
   const ok = user.isPasswordMatched(credentials.password);
   if (!ok) {
-    // TODO: handle error
-    return;
+    throw ResponseError.fobidden('passwod not matched')
   }
 
   res
@@ -29,13 +31,14 @@ router.post('/login', upload.none(), (req, res) => {
     .redirect(301, '/');
 });
 
-router.post('/signup', (req, res) => {
+router.post('/signup', (req, res, next) => {
   async function singup() {
     const params: SignupParams = req.body;
 
+    console.log(params);
+
     if (params.password != params.confirmPassword) {
-      // TODO: handle errors
-      return;
+      throw ResponseError.badRequest('passwords mismatched!')
     }
 
     const user = await (new User()).withCredentials(params);
@@ -46,7 +49,7 @@ router.post('/signup', (req, res) => {
       .redirect(301, '/');
   };
   
-  singup();
+  singup().catch(next);
 });
 
 export default router;
