@@ -28,6 +28,9 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
   res.render('login.html');
 });
+app.get('/signup', (req, res) => {
+  res.render('signup.html');
+});
 app.get('/upload', (req, res) => {
   res.render('upload.html');
 });
