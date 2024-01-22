@@ -2,7 +2,7 @@
   "ext": "ts",
   "exec": "ts-node src/server.ts",
   "ignore": [
-    "src/**",
+    "src/client/**",
     "build/**",
     "test/**"
   ],
