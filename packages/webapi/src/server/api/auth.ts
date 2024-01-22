@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import { User } from '../entity/User';
 import { userStore } from './store';
 import { Credentials, SignupParams } from '../model/form-data';
-import { ResponseError } from './response-errot';
+import { ResponseError } from './response-error';
 
 const router = Router();
 const upload = multer();
