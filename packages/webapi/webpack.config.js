@@ -7,9 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   mode: prod ? 'production' : 'development',
   entry: {
-    login: './src/client/RenderLogin.tsx',
     canvas: './src/client/canvas.ts',
-    upload: './src/client/upload.ts',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -23,23 +21,8 @@ module.exports = {
       title: 'Login',
       template: './assets/html/index.html',
       inject: 'body',
-      chunks: ['login'], // Add only index chunk
+      chunks: ['canvas'],
       hash: true, // Append compilation hash `?hash=xxx`
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Upload',
-      filename: 'upload.html',
-      template: './assets/html/index.html',
-      inject: 'body',
-      chunks: ['upload'], // Add only index chunk
-      hash: true, // Append compilation hash `?hash=xxx`
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'test.html',
-      template: "./assets/html/test.html",
-      title: 'Test',
-      inject: 'body',
-      chunks: ['canvas']
     }),
     new MiniCssExtractPlugin(),
   ],
