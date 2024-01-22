@@ -5,6 +5,10 @@ export const homePageCtx = {
       url: '/login'
     },
     {
+      name: 'Sign Up',
+      url: '/signup'
+    },
+    {
       name: 'Upload',
       url: '/upload'
     },
