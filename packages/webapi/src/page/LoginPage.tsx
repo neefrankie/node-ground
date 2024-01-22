@@ -1,24 +1,14 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
-import { CenterLayout} from './bsui/Layout';
+import { ContainerCenterLayout} from './Layout';
 
-const container = document.getElementById('root');
-const root = createRoot(container!);
-
-root.render(
-  <React.StrictMode>
-    <LoginPage />
-  </React.StrictMode>
-);
-
-function LoginPage() {
+export function LoginPage() {
   return (
-    <CenterLayout>
+    <ContainerCenterLayout>
       <>
         <h4 className="text-center">Login</h4>
         <LoginForm/>
       </>
-    </CenterLayout>
+    </ContainerCenterLayout>
   )
 }
 

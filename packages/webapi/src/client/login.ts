@@ -1,6 +1,6 @@
-function startLogin(formData: FormData) {
+function startLogin(formData: FormData, toUrl: string) {
 
-  fetch('/api/login', {
+  fetch(toUrl, {
       method: 'POST',
       body: formData,
       redirect: 'follow',
@@ -33,7 +33,7 @@ function handleLogin() {
       console.log(`key: ${key}, value: ${value}`);
     }
 
-    startLogin(formData);
+    startLogin(formData, formEl.action);
   });
 }
 

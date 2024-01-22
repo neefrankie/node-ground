@@ -15,10 +15,6 @@ const upload = multer({
   }),
 });
 
-router.get('/', (req, res) => {
-  res.render('upload.html');
-});
-
 router.put('/', upload.single('apk'), (req, res) => {
   console.log(req.file);
   console.log(req.body);

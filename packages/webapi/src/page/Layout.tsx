@@ -1,18 +1,18 @@
 import React from 'react';
 
-export function CenterLayout(props: {
+export function ContainerCenterLayout(props: {
   children: JSX.Element
 }) {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6">{props.children}</div>
+        <div className="col-md-8 col-lg-6 col-xl-4">{props.children}</div>
       </div>
     </div>
   );
 }
 
-export function ContentLayout(
+export function ContainerSideLayout(
   props: {
     sidebar?: JSX.Element;
     children: JSX.Element;

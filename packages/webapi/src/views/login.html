@@ -3,8 +3,8 @@
 {% block content %}
 
 <section>
-  <h4>Login</h4>
-  <form method="POST" id="loginForm" action="/api/login" enctype="multipart/form-data">
+  <h4 class="text-center">Login</h4>
+  <form method="POST" id="loginForm" action="/api/auth/login" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input type="email" class="form-control" id="email" name="email" required>
@@ -18,7 +18,9 @@
       <input type="checkbox" class="form-check-input" id="exampleCheck" name="exampleCheck">
       <label class="form-check-label" for="exampleCheck">Check me out</label>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
   </form>
 </section>
 

@@ -1,9 +1,10 @@
-import express from 'express';
+import express, { response } from 'express';
 import { configure } from 'nunjucks';
 import { resolve } from 'path';
 import ws from 'ws';
-import loginRouter from './login';
-import uploadRouter from './upload';
+import { homePageCtx } from './server/model/page';
+import apiRouter from './server/api';
+import { renderAppLogin } from './page/ssr';
 
 const app = express();
 const port = 3000;
@@ -23,32 +24,23 @@ configure(
 app.use(express.static(resolve(__dirname, '../dist')));
 
 app.get('/', (req, res) => {
-
-  res.render('index.html', {
-    list: [
-      {
-        name: 'Login',
-        url: '/login'
-      },
-      {
-        name: 'Upload',
-        url: '/upload'
-      },
-      {
-        name: 'MathJax',
-        url: '/mathjax'
-      }
-    ]
-  });
+  res.render('index.html', homePageCtx);
 });
-
-
-app.use('/login', loginRouter);
-app.use('/upload', uploadRouter);
-
+app.get('/login', (req, res) => {
+  res.render('login.html');
+});
+app.get('/upload', (req, res) => {
+  res.render('upload.html');
+});
+app.get('/ssr', (req, res) => {
+  renderAppLogin(res);
+});
 app.get('/mathjax', (req, res) => {
   res.render('mathjax.html', {title: 'MathJax Playground'})
 });
+
+app.use('/api', apiRouter);
+
 
 const wsServer = new ws.Server({ noServer: true });
 
