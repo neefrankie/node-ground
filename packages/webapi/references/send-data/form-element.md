@@ -22,7 +22,7 @@ Holding all form controls belonging to this form element.
 
 * `length: long`
 
-The number of conrols in the form
+The number of controls in the form
 
 * `name: DOMString`
 
@@ -64,7 +64,6 @@ The value of the form's `accept-charset` HTML attribute, represeting the charact
 ## SubmitEvent
 
 SubmitEvnet -> Event
-
 
 The `submit` event fires on the `<form>` element itself, not on any <button> or <input type="submit"> inside it.
 
