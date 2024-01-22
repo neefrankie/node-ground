@@ -3,6 +3,10 @@ export type Credentials = {
   password: string;
 };
 
+export type SignupParams = Credentials & {
+  confirmPassword: string;
+}
+
 export type EmailOnly = {
   email: string;
 };
