@@ -1,9 +1,17 @@
-function startLogin(formData: FormData, toUrl: string) {
+const jsonHeader = {
+  'Content-Type': 'application/json; charset=utf-8'
+};
+
+function sendJSON(formData: FormData, toUrl: string) {
+
+  const body = JSON.stringify(Object.fromEntries(formData.entries()));
+  console.log(body);
 
   fetch(toUrl, {
       method: 'POST',
-      body: formData,
+      body: body,
       redirect: 'follow',
+      headers: jsonHeader,
     })
     .then(resp => {
       if (!resp.ok) {
@@ -20,8 +28,12 @@ function startLogin(formData: FormData, toUrl: string) {
     });
 }
 
-function handleLogin() {
-  const formEl = document.getElementById('loginForm') as HTMLFormElement;
+function handleForm(formId: string) {
+  const formEl = document.getElementById(formId) as HTMLFormElement;
+  if (!formEl) {
+    console.error('form ' + formId + ' not found');
+    return;
+  }
 
   formEl.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -33,8 +45,9 @@ function handleLogin() {
       console.log(`key: ${key}, value: ${value}`);
     }
 
-    startLogin(formData, formEl.action);
+    sendJSON(formData, formEl.action);
   });
 }
 
-handleLogin()
+handleForm("loginForm");
+handleForm('signUpForm');
