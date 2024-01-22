@@ -1,6 +1,6 @@
 {
   "ext": "ts",
-  "exec": "ts-node server/app.ts",
+  "exec": "ts-node src/server.ts",
   "ignore": [
     "src/**",
     "build/**",
