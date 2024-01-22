@@ -15,14 +15,14 @@
     "paths": {
       "*": [
         "node_modules/*",
-        "server/types/*"
+        "src/types/*"
       ]
     }
   },
   "include": [
-      "server/**/*",
-      "src/**/*"
-, "webpack.config.ts"  ],
+      "src/**/*",
+      "test/**/*"
+  ],
   "exclude": [
     "package.json"
   ],

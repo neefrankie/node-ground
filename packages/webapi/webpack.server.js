@@ -5,8 +5,8 @@ const prod = process.env.NODE_ENV === 'production';
 module.exports = {
   mode: 'development',
   entry: {
-    login: './src/login.ts',
-    upload: './src/upload.ts',
+    login: './src/client/login.ts',
+    upload: './src/client/upload.ts',
   },
   devtool: prod ? 'source-map' : 'inline-source-map',
   output: {
