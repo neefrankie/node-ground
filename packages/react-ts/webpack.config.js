@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: prod ? 'production' : 'development',
   entry: {
-    index: './src/App.tsx',
+    main: './src/main.tsx',
   },
   devtool: prod ? 'source-map' : 'inline-source-map',
   devServer: {
@@ -17,10 +17,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Login',
-      template: './html/index.html',
+      title: 'React TypeScript',
+      // template: './html/index.html',
       inject: 'body',
       hash: true, // Append compilation hash `?hash=xxx`
+      scriptLoading: 'module',
+      meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
     }),
   ],
   output: {

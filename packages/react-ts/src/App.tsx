@@ -1,12 +1,12 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
 import { LoginPage } from './page/LoginPage';
 
-const container = document.getElementById('root');
-const root = createRoot(container!);
+function App() {
+  return (
+    <>
+      <LoginPage/>
+    </>
+  );
+}
 
-root.render(
-  <React.StrictMode>
-    <LoginPage />
-  </React.StrictMode>
-);
+export default App;
