@@ -7,6 +7,7 @@ module.exports = {
   mode: prod ? 'production' : 'development',
   entry: {
     main: './src/main.tsx',
+    mui: './src/mui.tsx',
   },
   devtool: prod ? 'source-map' : 'inline-source-map',
   devServer: {
@@ -20,10 +21,16 @@ module.exports = {
       title: 'React TypeScript',
       // template: './html/index.html',
       inject: 'body',
+      chunks: ['main'],
       hash: true, // Append compilation hash `?hash=xxx`
       scriptLoading: 'module',
       meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
     }),
+    new HtmlWebpackPlugin({
+      title: 'MUI Demo',
+      filename: 'mui.html',
+      chunks: ['mui'],
+    })
   ],
   output: {
     filename: '[name].bundle.js',
