@@ -1,5 +1,5 @@
 import { resolve } from 'node:path';
-import { ImageProcessor, isSvg, square } from './lib/processor';
+import { ImageProcessor, SharpSize, isSvg, } from './lib/processor';
 import { mkDirAll } from './lib/dir';
 import { fav } from './lib/fav';
 
@@ -23,13 +23,14 @@ export async function produceLogoAndFav(
     mkDirAll(resolve(outDir, 'fav'))
   ])
 
-  const p = new ImageProcessor(input, outDir);
+  const p = (new ImageProcessor(input, outDir))
+    .setSizes(sizes.map(SharpSize.square));
 
   if (isSvg(input)) {
     await p.optmizeSvg();
   }
 
-  await p.toMultiPng(sizes.map(square));
+  await p.toPng();
 
   await fav(input, favDir);
 }

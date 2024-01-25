@@ -1,19 +1,24 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'path';
 import { optimize } from 'svgo';
-import sharp, { PngOptions, ResizeOptions, Color, Sharp } from 'sharp';
+import sharp, { PngOptions, ResizeOptions, Sharp } from 'sharp';
 import { extractName, mkDirDist } from './dir';
 
 export function isSvg(name: string): boolean {
   return name.endsWith('.svg');
 }
 
-export function square(size: number): ResizeOptions {
-  return {
-    width: size,
-    height: size,
-    fit: 'contain',
-    background: { r: 0, g: 0, b: 0, alpha: 0}
+export class SharpSize {
+  private resize?: ResizeOptions;
+
+
+  static square(size: number): ResizeOptions {
+    return {
+      width: size,
+      height: size,
+      fit: 'contain',
+      background: { r: 0, g: 0, b: 0, alpha: 0}
+    }
   }
 }
 
@@ -26,6 +31,7 @@ export class ImageProcessor {
   private buffer: Buffer;
 
   private pngOpt?: PngOptions;
+  private resizeOpt: ResizeOptions[] = [];
   
   constructor (input: string, outDir: string) {
     this.inputFile = input;
@@ -76,12 +82,22 @@ export class ImageProcessor {
     return sharp(this.buffer);
   }
 
+  setSizes(opts: ResizeOptions[]) {
+    this.resizeOpt = opts;
+    return this;
+  }
+
+  addSize(opt: ResizeOptions) {
+    this.resizeOpt.push(opt);
+    return this;
+  }
+
   withPng(opts: PngOptions) {
     this.pngOpt = opts;
     return this;
   }
 
-  async toPng(resize?: ResizeOptions) {
+  private async createPng(resize?: ResizeOptions) {
     await this.fillBuffer();
 
     const b = await this.sharp()
@@ -89,12 +105,19 @@ export class ImageProcessor {
       .resize(resize)
       .toBuffer();
 
-    let suffix: string = '';
-    if (resize && resize.height && resize.width) {
-      suffix = `-${resize.width}x${resize.height}`;
+    let parts: string[] = [];
+    if (resize) {
+      parts.push('-');
+      if (resize.width) {
+        parts.push(`${resize.width}`)
+      }
+      parts.push('x');
+      if (resize.height) {
+        parts.push(`${resize.height}`);
+      }
     }
 
-    const outFile = resolve(this.outDir, `${this.nameNoExt}${suffix}.png`);
+    const outFile = resolve(this.outDir, `${this.nameNoExt}${parts.join('')}.png`);
 
     await writeFile(outFile, b);
 
@@ -103,21 +126,28 @@ export class ImageProcessor {
     return this;
   }
 
-  async toMultiPng(sizes: ResizeOptions[]) {
-    return Promise.all(sizes.map(s => this.toPng(s)));
+  async toPng(resize?: ResizeOptions) {
+    if (this.resizeOpt.length == 0) {
+      return this.createPng();
+    }
+
+    await Promise.all(this.resizeOpt.map((size) => this.createPng(size)));
+
+    return this;
   }
 }
 
 if (require.main === module) {
   const main = async function () {
-    const input = resolve(__dirname, '../../svg/brand-ftc-logo-square.svg');
+    const input = resolve(__dirname, '../../assets/ftc/brand-ftc-logo-square.svg');
     const outDir = await mkDirDist('test');
 
     const p = new ImageProcessor(input, outDir);
 
     await p.toPng();
 
-    await p.toMultiPng([square(300)]);
+    p.setSizes([SharpSize.square(300)]);
+    await p.toPng();
   }
   
   main().catch(console.error);
