@@ -25,14 +25,14 @@ async function gatherFiles(sourceDir: string): Promise<string[]> {
 
 
 async function main() {
-  const inputDir = resolve(__dirname, '../svg');
+  const inputDir = resolve(__dirname, '../assets/ftc');
   const outDir = await mkDirDist('ftc');
 
   const files = await gatherFiles(inputDir);
 
   await Promise.all(files.map(f => processSvg(f, outDir)))
 
-  const input = resolve(__dirname, '../svg/brand-ftc-logo-square.svg');
+  const input = resolve(__dirname, '../assets/ftc/brand-ftc-logo-square.svg');
   const favDir = await mkDirDist('ftc/fav');
   await fav(input, favDir);
 }
