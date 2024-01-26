@@ -8,13 +8,11 @@ module.exports = {
   entry: {
     main: './src/main.tsx',
     mui: './src/mui.tsx',
+    state: './src/state.tsx',
   },
   devtool: prod ? 'source-map' : 'inline-source-map',
   devServer: {
     static: './dist',
-    proxy: {
-      '/api': 'http://localhost:3000'
-    }
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -30,6 +28,11 @@ module.exports = {
       title: 'MUI Demo',
       filename: 'mui.html',
       chunks: ['mui'],
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Managing State',
+      filename: 'managing-state.html',
+      chuks: ['state'],
     })
   ],
   output: {
