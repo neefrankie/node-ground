@@ -8,6 +8,7 @@ module.exports = {
   mode: prod ? 'production' : 'development',
   entry: {
     canvas: './src/client/canvas.ts',
+    cssbox: './src/client/cssbox.ts',
   },
   devtool: prod ? 'source-map' : 'inline-source-map',
   devServer: {
@@ -17,12 +18,16 @@ module.exports = {
     }
   },
   plugins: [
+    
     new HtmlWebpackPlugin({
-      title: 'Login',
       template: './assets/html/index.html',
-      inject: 'body',
       chunks: ['canvas'],
       hash: true, // Append compilation hash `?hash=xxx`
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'cssbox.html', // This is the url to open in browser
+      template: './assets/html/flexbox.html',
+      chunks: ['cssbox'],
     }),
     new MiniCssExtractPlugin(),
   ],
@@ -44,7 +49,9 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader,'style-loader', 'css-loader']
+        // css-loader handles import in js file.
+        // style-loader inject css into html. It cannot be used together with MinCssExtactPlugin.loader.
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
