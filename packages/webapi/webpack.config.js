@@ -9,7 +9,7 @@ module.exports = {
   entry: {
     canvas: './src/client/canvas.ts',
   },
-  devtool: 'inline-source-map',
+  devtool: prod ? 'source-map' : 'inline-source-map',
   devServer: {
     static: './dist',
     proxy: {
