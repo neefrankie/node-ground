@@ -1,5 +1,5 @@
 function main() {
-  const canvas = document.querySelector('#glcanvas');
+  const canvas: HTMLCanvasElement = document.querySelector('#glcanvas');
 
   const gl = canvas.getContext('webgl');
 

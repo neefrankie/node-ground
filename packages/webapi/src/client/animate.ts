@@ -8,7 +8,7 @@ function animateEvent() {
   element.className = "slidein"
 }
 
-function listener(event) {
+function listener(event: AnimationEvent) {
   const li = document.createElement("li");
   switch (event.type) {
     case "animationstart":
@@ -16,7 +16,7 @@ function listener(event) {
       break;
 
     case "animationend":
-      li.textContent = `Ended: elapsed time is ${event.elaspedTime}`;
+      li.textContent = `Ended: elapsed time is ${event.elapsedTime}`;
       break;
 
     case "animationiteration":
