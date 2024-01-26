@@ -39,6 +39,8 @@ The above order of loaders should be maintained:
 
 `css-loader` handle `import` in JS while `style-loader` injects `style` tag into HTML.
 
+DO NOT use `style-loader` together with `MiniCssExtractPlugin.loader`!
+
 When a module imporitng `./style.css` is run, a `<style>` tag with the stringified css will be inserted into the `<head>` of HTML file.
 
 
