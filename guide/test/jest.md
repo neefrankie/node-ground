@@ -77,6 +77,18 @@ Use either:
 
 ## Configuration
 
+### Test Files
+
+Determined by `testMatch` option. Default to `**/__tests__/**`.
+
+By default it looks for `.js`, `.jsx`, `.ts` and `.tsx` files inside of `__tests__` folders, as well as any files with suffix of `.test` or `.spec`.
+
+It will also find files called `test.js` or `spec.js`.
+
+`testPathIgnorePatterns` ignores `node_modules` by default.
+
+`testRegex` is the same as `testMatch`. They canot coexist.
+
 ## CLI
 
 ```sh

@@ -22,7 +22,7 @@
   },
   "include": [
       "src/**/*",
-      "test/**/*"
+      "__test__/**/*"
     ],
   "exclude": [
     "package.json"
