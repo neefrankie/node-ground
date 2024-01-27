@@ -17,22 +17,26 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'React TypeScript',
-      // template: './html/index.html',
-      inject: 'body',
       chunks: ['main'],
-      hash: true, // Append compilation hash `?hash=xxx`
-      scriptLoading: 'module',
-      meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
+      templateParameters: {
+        useBootstrap: true,
+      }
     }),
     new HtmlWebpackPlugin({
       title: 'MUI Demo',
       filename: 'mui.html',
       chunks: ['mui'],
+      templateParameters: {
+        useBootstrap: false,
+      }
     }),
     new HtmlWebpackPlugin({
       title: 'Managing State',
       filename: 'managing-state.html',
       chuks: ['state'],
+      templateParameters: {
+        useBootstrap: true,
+      }
     })
   ],
   output: {
