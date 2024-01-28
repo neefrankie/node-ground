@@ -37,8 +37,6 @@ function AccordionItem(
     onShow: () => void;
   }
 ) {
-  console.log(props.isActive);
-
   let btnClass = 'accordion-button';
   if (!props.isActive) {
     btnClass = `${btnClass} collapsed`;
