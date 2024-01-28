@@ -23,6 +23,14 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.ts|tsx$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+        resolve: {
+          extensions: ['.ts', '.tsx', '.js', '.json'],
+        },
+      },
+      {
         test: /\.css$/i,
         // css-loader handles import in js file.
         // style-loader inject css into html. It cannot be used together with MinCssExtactPlugin.loader.
