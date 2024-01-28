@@ -1,5 +1,3 @@
-import './css/flexbox.css';
-
 function createCanvas(width: number, height: number) {
   const elem = document.createElement('canvas');
   elem.height = height;

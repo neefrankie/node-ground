@@ -8,7 +8,6 @@ module.exports = {
   mode: prod ? 'production' : 'development',
   entry: {
     canvas: './src/client/canvas.ts',
-    cssbox: './src/client/cssbox.ts',
   },
   devtool: prod ? 'source-map' : 'inline-source-map',
   devServer: {
@@ -23,11 +22,6 @@ module.exports = {
       template: './assets/html/index.html',
       chunks: ['canvas'],
       hash: true, // Append compilation hash `?hash=xxx`
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'cssbox.html', // This is the url to open in browser
-      template: './assets/html/flexbox.html',
-      chunks: ['cssbox'],
     }),
     new MiniCssExtractPlugin(),
   ],
