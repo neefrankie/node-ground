@@ -2,11 +2,11 @@ import React from 'react';
 import { Messenger } from '../learn/Chat';
 import { CityQuizForm } from '../learn/CityQuiz';
 import { NameForm } from '../learn/NameForm';
-import { Accordion } from '..//learn/ShareState';
+import { Accordion } from '../learn/ShareState';
 import { Page } from '../learn/LevelContext';
 import { TaskApp } from '../learn/task/TaskApp';
 
-export function StatePage() {
+export function LearnPage() {
   return (
     <div className='container mt-3'>
       <div className='row justify-content-center'>
@@ -18,6 +18,8 @@ export function StatePage() {
           <Messenger />
           <Page />
           <TaskApp />
+
+          <h2>Escape Hatches</h2>
         </div>
       </div>
     </div>
