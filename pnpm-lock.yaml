@@ -333,6 +333,67 @@ importers:
         specifier: ^4.15.1
         version: 4.15.1(webpack-cli@5.1.4)(webpack@5.89.0)
 
+  packages/react-tailwind:
+    dependencies:
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.11.8
+        version: 20.11.8
+      '@types/react':
+        specifier: ^18.2.48
+        version: 18.2.48
+      '@types/react-dom':
+        specifier: ^18.2.18
+        version: 18.2.18
+      css-loader:
+        specifier: ^6.9.1
+        version: 6.9.1(webpack@5.90.0)
+      html-webpack-plugin:
+        specifier: ^5.5.3
+        version: 5.6.0(webpack@5.90.0)
+      postcss:
+        specifier: ^8.4.29
+        version: 8.4.33
+      postcss-load-config:
+        specifier: ^5.0.2
+        version: 5.0.2(postcss@8.4.33)
+      postcss-loader:
+        specifier: ^8.0.0
+        version: 8.0.0(postcss@8.4.33)(typescript@5.3.3)(webpack@5.90.0)
+      postcss-preset-env:
+        specifier: ^9.1.2
+        version: 9.3.0(postcss@8.4.33)
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      style-loader:
+        specifier: ^3.3.4
+        version: 3.3.4(webpack@5.90.0)
+      tailwindcss:
+        specifier: ^3.4.1
+        version: 3.4.1
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+      webpack:
+        specifier: ^5.90.0
+        version: 5.90.0(webpack-cli@5.1.4)
+      webpack-cli:
+        specifier: ^5.1.4
+        version: 5.1.4(webpack@5.90.0)
+      webpack-dev-middleware:
+        specifier: ^7.0.0
+        version: 7.0.0(quill-delta@5.1.0)(rxjs@7.8.1)(tslib@2.6.2)(webpack@5.90.0)
+
   packages/react-ts:
     dependencies:
       '@emotion/react':
@@ -4108,6 +4169,12 @@ packages:
     dependencies:
       undici-types: 5.26.5
 
+  /@types/node@20.11.8:
+    resolution: {integrity: sha512-i7omyekpPTNdv4Jb/Rgqg0RU8YqLcNsI12quKSDkRXNfx7Wxdm6HhK1awT3xTgEkgxPn3bvnSpiEAc7a7Lpyow==}
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
   /@types/nunjucks@3.2.6:
     resolution: {integrity: sha512-pHiGtf83na1nCzliuAdq8GowYiXvH5l931xZ0YEHaLMNFgynpEqx+IPStlu7UaDkehfvl01e4x/9Tpwhy7Ue3w==}
     dev: true
@@ -4195,7 +4262,7 @@ packages:
     dependencies:
       '@types/node': 20.11.7
       tapable: 2.2.1
-      webpack: 5.89.0(webpack-cli@5.1.4)
+      webpack: 5.90.0(webpack-cli@5.1.4)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
@@ -8078,7 +8145,7 @@ packages:
       pretty-format: 29.7.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      ts-node: 10.9.2(@types/node@20.11.7)(typescript@5.3.3)
+      ts-node: 10.9.2(@types/node@20.11.5)(typescript@5.3.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -8361,7 +8428,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.11.7
+      '@types/node': 20.11.8
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
