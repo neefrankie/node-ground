@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ContainerCenterLayout} from './Layout';
+import { CheckOrRadio, TextControl } from '../form/Controls';
 
 export function LoginPage() {
   return (
@@ -12,22 +13,56 @@ export function LoginPage() {
   )
 }
 
+type AuthParams = {
+  email: string;
+  password: string;
+}
+
 function LoginForm() {
+  const [auth, setAuth] = useState<AuthParams>({
+    email: '',
+    password: '',
+  });
+
+  const [checked, setChecked] = useState(true);
+
   return (
-    <form method="POST" id="loginForm" action="/api/login" encType="multipart/form-data">
-      <div className="mb-3">
-        <label htmlFor="email" className="form-label">Email</label>
-        <input type="email" className="form-control" id="email" name="email" required/>
-        <div id="emailHelp" className="form-text">We'll never share your email with anyone else</div>
-      </div>
-      <div className="mb-3">
-        <label htmlFor="password" className="form-label">Password</label>
-        <input type="password" className="form-control" id="password" name="password" required/>
-      </div>
-      <div className="mb-3 form-check">
-        <input type="checkbox" className="form-check-input" id="exampleCheck" name="exampleCheck"/>
-        <label className="form-check-label" htmlFor="exampleCheck">Check me out</label>
-      </div>
+    <form method="POST">
+      <TextControl
+        name='email'
+        value={auth.email}
+        type='email'
+        label='Email'
+        desc="We'll never share your email with anyone else"
+        required={true}
+        onChange={(v) => {
+          setAuth({
+            ...auth,
+            email: v,
+          })
+        }}
+      />
+      <TextControl
+        name='password'
+        value={auth.password}
+        type='password'
+        label='Password'
+        required={true}
+        onChange={(v) => {
+          setAuth({
+            ...auth,
+            password: v,
+          })
+        }}
+      />
+
+      <CheckOrRadio
+        name='exampleCheck'
+        type='checkbox'
+        label='Check me out'
+        checked={checked}
+        onChange={setChecked}
+      />
       <div className='d-grid'>
         <button type="submit" className="btn btn-primary">Submit</button>
       </div>
