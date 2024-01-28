@@ -7,8 +7,6 @@ module.exports = {
   mode: prod ? 'production' : 'development',
   entry: {
     main: './src/main.tsx',
-    mui: './src/mui.tsx',
-    state: './src/state.tsx',
   },
   devtool: prod ? 'source-map' : 'inline-source-map',
   devServer: {
@@ -22,22 +20,6 @@ module.exports = {
         useBootstrap: true,
       }
     }),
-    new HtmlWebpackPlugin({
-      title: 'MUI Demo',
-      filename: 'mui.html',
-      chunks: ['mui'],
-      templateParameters: {
-        useBootstrap: false,
-      }
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Managing State',
-      filename: 'managing-state.html',
-      chuks: ['state'],
-      templateParameters: {
-        useBootstrap: true,
-      }
-    })
   ],
   output: {
     filename: '[name].bundle.js',

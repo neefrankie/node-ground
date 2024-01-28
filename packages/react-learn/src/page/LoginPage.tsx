@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { ContainerCenterLayout} from './Layout';
+import { ContainerCenter} from './Layout';
 import { CheckOrRadio, TextControl } from '../form/Controls';
 
 export function LoginPage() {
   return (
-    <ContainerCenterLayout>
+    <ContainerCenter>
       <>
         <h4 className="text-center">Login</h4>
         <LoginForm/>
       </>
-    </ContainerCenterLayout>
+    </ContainerCenter>
   )
 }
 

@@ -1,10 +1,12 @@
 import React from 'react'
 import { LoginPage } from './page/LoginPage';
+import { StatePage } from './page/StatePage';
 
 function App() {
   return (
     <>
-      <LoginPage/>
+      <LoginPage />
+      <StatePage />
     </>
   );
 }

@@ -8,17 +8,13 @@ import { TaskApp } from '../learn/task/TaskApp';
 
 export function StatePage() {
   return (
-    <div className='container'>
-      <div className='row'>
-        <h4 className="text-center">Manging State</h4>
-      </div>
-      <div className='row'>
-        <div className='col-md-6'>
+    <div className='container mt-3'>
+      <div className='row justify-content-center'>
+        <div className='col-lg-8 col-xl-6'>
+          <h2 className="text-center">Manging State</h2>
           <CityQuizForm />
           <NameForm />
           <Accordion />
-        </div>
-        <div className='col-md-6'>
           <Messenger />
           <Page />
           <TaskApp />
