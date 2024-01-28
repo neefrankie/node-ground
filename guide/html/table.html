@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table</title>
+</head>
+<body>
+  <table>
+    <!-- 
+      Specifies the caption or title of a talbe, and if used, it is always the first child of a <table>. 
+      Its styling and physical position relative to the table may be changed using the CSS `caption-side: top | bottom` and `text-align` properties. 
+    -->
+    <caption>Caption</caption>
+    <!-- thead Defines a set of rows defining the head of the columns of the table.  -->
+    <thead>
+      <tr>
+        <!-- 
+          Defines a cell as header of a group to table cells. 
+          The exact nature of this group is defined by the `scope` and `header` attributes. 
+        -->
+        <th scope="col">Header content 1</th>
+        <th scope="col">Header content 2</th>
+      </tr>
+    </thead>
+  
+    <tfoot>
+      <tr>		
+        <th scope="row">Row Head</th>
+        <td>Footer content 1</td>
+        <td>Footer content 2</td>
+      </tr>
+    </tfoot>
+  
+    <tbody>
+      <tr>
+        <th scope="row">Row Head</th>
+        <td>Body content 1</td>
+        <td>Body content 2</td>
+      </tr>
+    </tbody>
+  
+  </table>
+</body>
+</html>
