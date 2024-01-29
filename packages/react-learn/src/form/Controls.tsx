@@ -1,14 +1,17 @@
-import React, { HTMLInputTypeAttribute } from 'react';
+import React, { HTMLInputTypeAttribute, ForwardedRef, forwardRef } from 'react';
 
-export function TextControl(props: {
-  name: string;
-  value?: string;
-  type?: HTMLInputTypeAttribute;
-  label?: string;
-  desc?: string;
-  required?: boolean;
-  onChange: (v: string) => void
-}) {
+export const TextControl = forwardRef(function TextControl(
+  props: {
+    name: string;
+    value?: string;
+    type?: HTMLInputTypeAttribute;
+    label?: string;
+    desc?: string;
+    required?: boolean;
+    onChange: (v: string) => void
+  },
+  ref?: ForwardedRef<HTMLInputElement>
+) {
   return (
     <div className="mb-3">
       {
@@ -28,6 +31,7 @@ export function TextControl(props: {
         name={props.name}
         required={props.required}
         onChange={(e) => props.onChange(e.target.value)}
+        ref={ref}
       />
 
       {
@@ -36,15 +40,17 @@ export function TextControl(props: {
       }
     </div>
   );
-}
+});
 
-export function TextAreaControl(props: {
-  name: string;
-  label?: string;
-  value: string;
-  disabled?: boolean;
-  onChange: (v: string) => void;
-}) {
+export function TextAreaControl(
+  props: {
+    name: string;
+    label?: string;
+    value: string;
+    disabled?: boolean;
+    onChange: (v: string) => void;
+  },
+) {
   return (
     <div className='mb-3'>
       {
@@ -68,14 +74,16 @@ export function TextAreaControl(props: {
   );
 }
 
-export function CheckOrRadio(props: {
-  name: string;
-  type: 'checkbox' | 'radio';
-  label?: string;
-  checked?: boolean;
-  disabble?: boolean;
-  onChange: (v: boolean) => void;
-}) {
+export function CheckOrRadio(
+  props: {
+    name: string;
+    type: 'checkbox' | 'radio';
+    label?: string;
+    checked?: boolean;
+    disabble?: boolean;
+    onChange: (v: boolean) => void;
+  },
+) {
   return (
     <div className="mb-3 form-check">
       <input 
