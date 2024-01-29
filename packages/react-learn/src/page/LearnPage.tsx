@@ -5,6 +5,9 @@ import { NameForm } from '../learn/NameForm';
 import { Accordion } from '../learn/ShareState';
 import { Page } from '../learn/LevelContext';
 import { TaskApp } from '../learn/task/TaskApp';
+import { Counter, FocusForm } from '../learn/Refs';
+import { ChatRoom, VideoApp } from '../learn/Effects';
+import { Canvas } from '../learn/CustomHooks';
 
 export function LearnPage() {
   return (
@@ -20,6 +23,11 @@ export function LearnPage() {
           <TaskApp />
 
           <h2>Escape Hatches</h2>
+          <Counter />
+          <FocusForm />
+          <VideoApp />
+          <ChatRoom />
+          <Canvas />
         </div>
       </div>
     </div>
