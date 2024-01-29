@@ -25,7 +25,7 @@ function VideoPlayer(
   );
 }
 
-export function VideoApp() {
+function VideoApp() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (

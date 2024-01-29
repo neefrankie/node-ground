@@ -41,13 +41,13 @@ export function Canvas() {
   const pos5 = useDeplayedValue(pos4, 50);
 
   return (
-    <div className='vh-100'>
+    <>
       <Dot position={pos1} opacity={1} />
       <Dot position={pos2} opacity={0.8} />
       <Dot position={pos3} opacity={0.6} />
       <Dot position={pos4} opacity={0.4} />
       <Dot position={pos5} opacity={0.2} />
-    </div>
+    </>
   );
 }
 
