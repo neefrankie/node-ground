@@ -1,7 +1,20 @@
-import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import React, { ReactNode, useEffect } from 'react';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { ILink, navItems } from './sitemap';
 
+/**
+ * @description Scroll restoration. Render it at the top of your app, but below Router
+ * @see https://v5.reactrouter.com/web/guides/scroll-restoration
+ */
+export function ScrollToTop(): ReactNode {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 export function Root() {
   return (
