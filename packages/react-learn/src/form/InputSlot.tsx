@@ -11,7 +11,7 @@ export type InputProps = InputBaseProps & InputHTMLAttributes<HTMLInputElement>;
 
 export function InputSlot(
   props: {
-    id?: string;
+    labelFor?: string;
     children: JSX.Element;
     className?: string;
   } & InputBaseProps,
@@ -22,7 +22,7 @@ export function InputSlot(
       {
         props.label &&
         <label 
-          htmlFor={props.id} 
+          htmlFor={props.labelFor} 
           className="form-label"
         >
           {props.label}

@@ -1,27 +1,25 @@
-import React from 'react';
+import React, { OptionHTMLAttributes } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import ReactDatePicker from 'react-datepicker';
-import Select from 'react-select';
 import { TextInput } from '../form/TextInput';
 import { sleep } from '../util/sleep';
 import { SubmitButton } from '../form/SubmitButton';
+import { Select } from '../form/Select';
 
 interface IDValues {
   idNumber: string;
   firstName: string;
   lastName: string;
   birthday: Date;
-  age: number;
-  gender?: Gender;
+  gender?: Gender | null;
 }
 
 const idSchema = z.object({
   idNumber: z.string().min(18).max(19),
   firstName: z.string().min(8),
   lastName: z.string(),
-  age: z.coerce.number(),
 })
 .required();
 
@@ -30,7 +28,7 @@ enum Gender {
   Female = 'F',
 };
 
-const options = [
+const genderOpts: OptionHTMLAttributes<HTMLSelectElement>[] = [
   { value: Gender.Male, label: 'Male'},
   { value: Gender.Female, label: 'Female'},
 ];
@@ -42,6 +40,7 @@ export function IDForm() {
     handleSubmit, 
     formState,
     control,
+    watch,
   } = useForm<IDValues>({
     mode: 'onChange',
     defaultValues: {
@@ -49,8 +48,7 @@ export function IDForm() {
       firstName: '',
       lastName: '',
       birthday: new Date(),
-      age: 0,
-      gender: undefined,
+      gender: null,
     },
     resolver: zodResolver(idSchema),
   });
@@ -62,6 +60,8 @@ export function IDForm() {
     return sleep(2000, data);
   };
 
+  console.log(watch('gender'));
+  
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       
@@ -78,20 +78,12 @@ export function IDForm() {
       />
 
       <TextInput
-        name='lastName'
         label='Last name'
         error={dirtyFields.lastName ? errors.lastName?.message : undefined}
-        {...register}
+        {...register('lastName')}
       />
 
-      <TextInput
-        label='Age'
-        type='number'
-        error={dirtyFields.age ? errors.age?.message : undefined}
-        {...register('age')}
-      />
-
-      <div className='mb-3'>
+      {/* <div className='mb-3'>
         <label className='me-3'>
           Birthday
         </label>
@@ -106,18 +98,13 @@ export function IDForm() {
             />
           }
         />
-      </div>
+      </div> */}
 
-      <Controller
-        name='gender'
-        control={control}
-        render={({ field }) =>
-          <Select
-            onChange={field.onChange}
-            onBlur={field.onBlur}
-            options={options}
-          />
-        }
+      <Select
+        label='Gender'
+        error={dirtyFields.gender ? errors.gender?.message : undefined}
+        {...register('gender')}
+        options={genderOpts}
       />
 
       <SubmitButton

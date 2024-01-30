@@ -10,7 +10,7 @@ export const TextInput = forwardRef(function TextControl(
 
   return (
     <InputSlot
-      id={props.name}
+      labelFor={props.name}
       label={props.label}
       desc={props.desc}
       error={props.error}
