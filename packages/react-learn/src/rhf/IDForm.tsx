@@ -1,16 +1,20 @@
 import React from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import ReactDatePicker from 'react-datepicker';
+import Select from 'react-select';
 import { TextControl } from '../form/Controls';
 import { sleep } from '../util/sleep';
 import { SubmitButton } from '../form/SubmitButton';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 interface IDValues {
   idNumber: string;
   firstName: string;
   lastName: string;
+  birthday: Date;
   age: number;
+  gender?: Gender;
 }
 
 const idSchema = z.object({
@@ -21,19 +25,32 @@ const idSchema = z.object({
 })
 .required();
 
+enum Gender {
+  Male = 'M',
+  Female = 'F',
+};
+
+const options = [
+  { value: Gender.Male, label: 'Male'},
+  { value: Gender.Female, label: 'Female'},
+];
+
 export function IDForm() {
   
   const { 
     register, 
     handleSubmit, 
     formState,
+    control,
   } = useForm<IDValues>({
     mode: 'onChange',
     defaultValues: {
       idNumber: '',
       firstName: '',
       lastName: '',
+      birthday: new Date(),
       age: 0,
+      gender: undefined,
     },
     resolver: zodResolver(idSchema),
   });
@@ -74,6 +91,35 @@ export function IDForm() {
         {...register('age')}
       />
 
+      <div className='mb-3'>
+        <label className='me-3'>
+          Birthday
+        </label>
+        <Controller
+          name='birthday'
+          control={control}
+          render={({ field }) =>
+            <ReactDatePicker
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              selected={field.value}
+            />
+          }
+        />
+      </div>
+
+      <Controller
+        name='gender'
+        control={control}
+        render={({ field }) =>
+          <Select
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+            options={options}
+          />
+        }
+      />
+
       <SubmitButton
         isDirty={isDirty}
         isValid={isValid}
@@ -85,33 +131,4 @@ export function IDForm() {
 }
 
 
-interface IFormInput {
-  firstName: string;
-  lastName: string;
-  iceCreamType: {
-    label: string;
-    value: string;
-  };
-}
-
-export function IntegreateNoRef() {
-  const { control } = useForm<IFormInput>({
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      iceCreamType: {}
-    }
-  });
-
-
-  return (
-    <form>
-      <Controller
-        name='firstName'
-        control={control}
-        render={({field}) => <TextControl {...field} />}
-      />
-    </form>
-  )
-}
 

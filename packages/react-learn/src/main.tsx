@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { routes } from './App';
 
+import "react-datepicker/dist/react-datepicker.css";
+
 const router = createBrowserRouter(routes);
 
 const container = document.getElementById('root');
