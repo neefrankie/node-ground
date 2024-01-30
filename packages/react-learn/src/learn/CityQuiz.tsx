@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { TextAreaControl } from '../form/TextInput';
+import { TextAreaInput } from '../form/TextAreaInput';
 import React from 'react';
 
 // Reacting to input with state
@@ -37,11 +37,13 @@ export function CityQuizForm() {
       </p>
 
       <form onSubmit={handleSubmit}>
-        <TextAreaControl
+        <TextAreaInput
           name="guessCity"
           disabled={status === 'submitting'}
           value={answer}
-          onChange={handleTextareaChange}
+          onChange={(e) => {
+            handleTextareaChange(e.target.value);
+          }}
         />
 
         <button
