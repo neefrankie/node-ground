@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { CheckOrRadio, TextInput } from '../form/TextInput';
+import { TextInput } from '../form/TextInput';
+import { CheckBox } from '../form/CheckBox';
 
 export function LoginPage() {
   return (
@@ -53,12 +54,13 @@ function LoginForm() {
         }}
       />
 
-      <CheckOrRadio
+      <CheckBox
         name='exampleCheck'
-        type='checkbox'
         label='Check me out'
         checked={checked}
-        onChange={setChecked}
+        onChange={(e) => {
+          setChecked(e.target.checked);
+        }}
       />
       <div className='d-grid'>
         <button type="submit" className="btn btn-primary">Submit</button>
