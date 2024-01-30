@@ -1,11 +1,14 @@
 import React from 'react';
 import { SimpleForm } from './SimpleForm';
+import { IDForm } from './IDForm';
 
 export function RHFPage() {
   return (
     <>
-      <h2>React Hook Login Example</h2>
+      <h2>Plain Hook Form</h2>
       <SimpleForm />
+      <h2 className='mt-5'>ID Card</h2>
+      <IDForm />
     </>
   );
 }
