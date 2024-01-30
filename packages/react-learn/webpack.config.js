@@ -11,6 +11,10 @@ module.exports = {
   devtool: prod ? 'source-map' : 'inline-source-map',
   devServer: {
     static: './dist',
+    // Solve conflict with react router since
+    // html webpack plugin will capture a url.
+    // See https://ui.dev/react-router-cannot-get-url-refresh
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -24,6 +28,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     clean: true,
   },
   module: {

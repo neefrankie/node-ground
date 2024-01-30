@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import { ContainerCenter} from './Layout';
 import { CheckOrRadio, TextControl } from '../form/Controls';
 
 export function LoginPage() {
   return (
-    <ContainerCenter>
-      <>
-        <h4 className="text-center">Login</h4>
-        <LoginForm/>
-      </>
-    </ContainerCenter>
+    <>
+      <h4 className="text-center">Login</h4>
+      <LoginForm/>
+    </>
   )
 }
 
@@ -35,10 +32,10 @@ function LoginForm() {
         label='Email'
         desc="We'll never share your email with anyone else"
         required={true}
-        onChange={(v) => {
+        onChange={(e) => {
           setAuth({
             ...auth,
-            email: v,
+            email: e.target.value,
           })
         }}
       />
@@ -48,10 +45,10 @@ function LoginForm() {
         type='password'
         label='Password'
         required={true}
-        onChange={(v) => {
+        onChange={(e) => {
           setAuth({
             ...auth,
-            password: v,
+            password: e.target.value,
           })
         }}
       />

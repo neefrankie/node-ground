@@ -6,7 +6,7 @@ type Inputs = {
   exampleRquired: string;
 };
 
-function RHForm() {
+export function HFSimple() {
   const {
     register,
     handleSubmit,
@@ -27,17 +27,5 @@ function RHForm() {
 
       <input type="submit" />
     </form>
-  )
-}
-
-export function RHFPage() {
-  return (
-    <div className='container md-3'>
-      <div className='row justify-content-center'>
-        <div className='col-lg-8 col-xl-6'>
-          <RHForm />
-        </div>
-      </div>
-    </div>
   )
 }

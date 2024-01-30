@@ -1,15 +1,12 @@
-import React, { HTMLInputTypeAttribute, ForwardedRef, forwardRef } from 'react';
+import React, { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  desc?: string;
+}
 
 export const TextControl = forwardRef(function TextControl(
-  props: {
-    name: string;
-    value?: string;
-    type?: HTMLInputTypeAttribute;
-    label?: string;
-    desc?: string;
-    required?: boolean;
-    onChange: (v: string) => void
-  },
+  props: InputProps,
   ref?: ForwardedRef<HTMLInputElement>
 ) {
   return (
@@ -25,12 +22,8 @@ export const TextControl = forwardRef(function TextControl(
       }
       
       <input
-        type={props.type ? props.type : "text"}
-        className="form-control"
-        id={props.name}
-        name={props.name}
-        required={props.required}
-        onChange={(e) => props.onChange(e.target.value)}
+        className='form-control'
+        {...props}
         ref={ref}
       />
 

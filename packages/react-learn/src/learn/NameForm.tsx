@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { TextControl } from '../form/Controls';
 
 // Choosing the state structure
@@ -9,12 +9,12 @@ export function NameForm() {
 
   const fullName = firstName + ' ' + lastName;
 
-  function handleFirstNameChange(v: string) {
-    setFirstName(v);
+  function handleFirstNameChange(e: ChangeEvent<HTMLInputElement>) {
+    setFirstName(e.target.value);
   }
 
-  function handleLastNameChange(v: string) {
-    setLastName(v);
+  function handleLastNameChange(e: ChangeEvent<HTMLInputElement>) {
+    setLastName(e.target.value);
   }
 
   return (
