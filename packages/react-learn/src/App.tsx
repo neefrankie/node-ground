@@ -3,7 +3,7 @@ import {
   Outlet,
   RouteObject,
 } from 'react-router-dom';
-import { LoginPage } from './auth/LoginPage';
+import { LoginPage } from './learn/LoginPage';
 import { LearnPage } from './learn/LearnPage';
 import { RHFPage } from './rhf/HFPage';
 import { Root, ScrollToTop } from './routes/Root';
