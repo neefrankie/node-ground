@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { TextInput } from '../form/Controls';
+import { TextInput } from '../form/TextInput';
 
 // Choosing the state structure
 // State shouldn't contain redundant or duplicated information.

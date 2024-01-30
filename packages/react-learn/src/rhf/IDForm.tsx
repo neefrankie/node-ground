@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import ReactDatePicker from 'react-datepicker';
 import Select from 'react-select';
-import { TextInput } from '../form/Controls';
+import { TextInput } from '../form/TextInput';
 import { sleep } from '../util/sleep';
 import { SubmitButton } from '../form/SubmitButton';
 

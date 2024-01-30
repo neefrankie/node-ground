@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CheckOrRadio, TextInput } from '../form/Controls';
+import { CheckOrRadio, TextInput } from '../form/TextInput';
 
 export function LoginPage() {
   return (

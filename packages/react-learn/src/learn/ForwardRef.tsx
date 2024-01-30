@@ -8,7 +8,7 @@
 // Wrap your component definition into `forwardRef`.
 
 import React, { useRef } from 'react';
-import { TextInput } from '../form/Controls';
+import { TextInput } from '../form/TextInput';
 
 export function FocusForm() {
   const ref = useRef<HTMLInputElement>(null);

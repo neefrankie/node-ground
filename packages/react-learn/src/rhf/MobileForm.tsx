@@ -2,7 +2,7 @@ import React from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { TextInput } from '../form/Controls';
+import { TextInput } from '../form/TextInput';
 import { sleep } from '../util/sleep';
 import { SubmitButton } from '../form/SubmitButton';
 

@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { TextAreaControl } from '../form/Controls';
+import { TextAreaControl } from '../form/TextInput';
 import React from 'react';
 
 // Reacting to input with state
