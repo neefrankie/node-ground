@@ -8,7 +8,7 @@
 // Wrap your component definition into `forwardRef`.
 
 import React, { useRef } from 'react';
-import { TextControl } from '../form/Controls';
+import { TextInput } from '../form/Controls';
 
 export function FocusForm() {
   const ref = useRef<HTMLInputElement>(null);
@@ -19,7 +19,7 @@ export function FocusForm() {
 
   return (
     <form>
-      <TextControl
+      <TextInput
         label='Enter your name'
         name='myInput'
         onChange={console.log}

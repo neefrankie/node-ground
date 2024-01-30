@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { TextControl } from '../form/Controls';
+import { TextInput } from '../form/Controls';
 
 // Choosing the state structure
 // State shouldn't contain redundant or duplicated information.
@@ -21,13 +21,13 @@ export function NameForm() {
     <div>
       <h2>Let's check you in</h2>
       <form>
-        <TextControl
+        <TextInput
           name="firstName"
           value={firstName}
           label="First name"
           onChange={handleFirstNameChange}
         />
-        <TextControl
+        <TextInput
           name="lastName"
           value={lastName}
           label="Last name"

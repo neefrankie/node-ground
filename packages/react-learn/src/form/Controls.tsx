@@ -6,7 +6,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-export const TextControl = forwardRef(function TextControl(
+export const TextInput = forwardRef(function TextControl(
   props: InputProps,
   ref?: ForwardedRef<HTMLInputElement>
 ) {

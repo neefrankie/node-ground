@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CheckOrRadio, TextControl } from '../form/Controls';
+import { CheckOrRadio, TextInput } from '../form/Controls';
 
 export function LoginPage() {
   return (
@@ -25,7 +25,7 @@ function LoginForm() {
 
   return (
     <form method="POST">
-      <TextControl
+      <TextInput
         name='email'
         value={auth.email}
         type='email'
@@ -39,7 +39,7 @@ function LoginForm() {
           })
         }}
       />
-      <TextControl
+      <TextInput
         name='password'
         value={auth.password}
         type='password'

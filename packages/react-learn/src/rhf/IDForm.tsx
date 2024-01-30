@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import ReactDatePicker from 'react-datepicker';
 import Select from 'react-select';
-import { TextControl } from '../form/Controls';
+import { TextInput } from '../form/Controls';
 import { sleep } from '../util/sleep';
 import { SubmitButton } from '../form/SubmitButton';
 
@@ -65,26 +65,26 @@ export function IDForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       
-      <TextControl
+      <TextInput
         label='ID Card Number'
         error={dirtyFields.idNumber ? errors.idNumber?.message : undefined}
         {...register('idNumber')}
       />
 
-      <TextControl
+      <TextInput
         label='First name'
         error={dirtyFields.firstName ? errors.firstName?.message : undefined}
         {...register('firstName')}
       />
 
-      <TextControl
+      <TextInput
         name='lastName'
         label='Last name'
         error={dirtyFields.lastName ? errors.lastName?.message : undefined}
         {...register}
       />
 
-      <TextControl
+      <TextInput
         label='Age'
         type='number'
         error={dirtyFields.age ? errors.age?.message : undefined}

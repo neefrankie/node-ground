@@ -2,7 +2,7 @@ import React from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { TextControl } from '../form/Controls';
+import { TextInput } from '../form/Controls';
 import { sleep } from '../util/sleep';
 import { SubmitButton } from '../form/SubmitButton';
 
@@ -37,13 +37,13 @@ export function MobileForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <TextControl
+      <TextInput
         label='Mobile'
         error={dirtyFields.mobile ? errors.mobile?.message : undefined}
         {...register('mobile')}
       />
 
-      <TextControl
+      <TextInput
         label='Code'
         error={dirtyFields.code ? errors.code?.message : undefined}
         {...register('code')}
