@@ -34,7 +34,7 @@ export function SubmitButton(
 ) {
   
   return (
-    <div className='d-grid'>
+    <div className='d-grid mt-3'>
       <SpinButton
         type='submit'
         disabled={!props.isDirty || !props.isValid || props.isSubmitting}
