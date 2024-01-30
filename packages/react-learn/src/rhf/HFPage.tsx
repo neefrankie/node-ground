@@ -1,12 +1,11 @@
 import React from 'react';
-import { IntegrateWithRef } from './Integrate';
-import { HFSimple } from './SimpleForm';
+import { SimpleForm } from './SimpleForm';
 
 export function RHFPage() {
   return (
     <>
-      <HFSimple />
-      <IntegrateWithRef />
+      <h2>React Hook Login Example</h2>
+      <SimpleForm />
     </>
   );
 }

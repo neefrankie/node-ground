@@ -1,6 +1,7 @@
 import React, { HTMLInputTypeAttribute } from 'react';
 import { FieldValues, UseFormRegister, Path, useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { TextControl } from '../form/Controls';
+import { sleep } from '../util/sleep';
 
 
 interface IFormValues {
@@ -43,9 +44,7 @@ export function IntegrateWithRef() {
 
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     console.log(data);
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(data), 2000);
-    });
+    return sleep(2000, data);
   };
 
   return (
