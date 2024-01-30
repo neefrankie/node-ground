@@ -1,7 +1,7 @@
 import React, { Dispatch, ReactNode, createContext, useContext, useReducer } from 'react';
 import { Action, Task, tasksReducer } from './task';
 
-const TasksContext = createContext<Task[] | null>(null);
+const TasksContext = createContext<Task[]>([]);
 const TasksDispatchContext = createContext<Dispatch<Action> | null>(null);
 
 export function TasksProvider(props: { 

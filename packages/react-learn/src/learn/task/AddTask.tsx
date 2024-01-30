@@ -4,7 +4,7 @@ import { useTasksDispatch } from './TasksContext';
 
 export function AddTask() {
   const [text, setText] = useState('');
-  const dispatch = useTasksDispatch();
+  const dispatch = useTasksDispatch()!;
 
   return (
     <div className='input-group mb-3'>

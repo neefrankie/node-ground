@@ -12,9 +12,9 @@ function VideoPlayer(
 
   useEffect(() => {
     if (props.isPlaying) {
-      ref.current.play();
+      ref.current?.play();
     } else {
-      ref.current.pause();
+      ref.current?.pause();
     }
   }, [props.isPlaying]);
 

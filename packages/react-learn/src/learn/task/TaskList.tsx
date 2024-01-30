@@ -23,7 +23,7 @@ function TaskItem(props: {
   task: Task,
 }) {
   const [isEditing, setIsEditing] = useState(false);
-  const dispatch = useTasksDispatch();
+  const dispatch = useTasksDispatch()!;
 
   const id = `task${props.task.id}`;
 

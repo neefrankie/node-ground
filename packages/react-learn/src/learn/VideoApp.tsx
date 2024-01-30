@@ -33,9 +33,9 @@ export function VideoApp() {
   // Sync playing.
   useEffect(() => {
     if (isPlaying) {
-      ref.current.play();
+      ref.current?.play();
     } else {
-      ref.current.pause();
+      ref.current?.pause();
     }
   }, [isPlaying]);
 

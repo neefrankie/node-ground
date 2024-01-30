@@ -5,7 +5,7 @@ import React from 'react';
 // Reacting to input with state
 export function CityQuizForm() {
   const [ answer, setAnswer ] = useState('');
-  const [ error, setError ] = useState(null);
+  const [ error, setError ] = useState<Error | null>(null);
   const [ status, setStatus ] = useState('typing');
 
   if (status === 'success') {
@@ -19,7 +19,7 @@ export function CityQuizForm() {
     try {
       await submitForm(answer);
       setStatus('success');
-    } catch(err) {
+    } catch(err: any) {
       setStatus('typing');
       setError(err);
     }

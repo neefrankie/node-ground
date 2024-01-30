@@ -14,7 +14,7 @@ export function FocusForm() {
   const ref = useRef<HTMLInputElement>(null);
 
   function handleClick() {
-    ref.current.focus();
+    ref.current?.focus();
   }
 
   return (
