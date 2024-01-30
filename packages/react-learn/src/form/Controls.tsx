@@ -1,14 +1,21 @@
 import React, { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   desc?: string;
+  error?: string;
 }
 
 export const TextControl = forwardRef(function TextControl(
   props: InputProps,
   ref?: ForwardedRef<HTMLInputElement>
 ) {
+
+  let cls = 'form-control';
+  if (props.error) {
+    cls += ' is-invalid';
+  }
+
   return (
     <div className="mb-3">
       {
@@ -22,7 +29,7 @@ export const TextControl = forwardRef(function TextControl(
       }
       
       <input
-        className='form-control'
+        className={cls}
         {...props}
         ref={ref}
       />
@@ -30,6 +37,10 @@ export const TextControl = forwardRef(function TextControl(
       {
         props.desc &&
         <div className="form-text">{props.desc}</div>
+      }
+      {
+        props.error &&
+        <div className="invalid-feedback">{props.error}</div>
       }
     </div>
   );
