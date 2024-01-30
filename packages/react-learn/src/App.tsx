@@ -1,31 +1,16 @@
-import React, { ReactNode, useEffect } from 'react'
+import React, {  } from 'react'
 import {
   Outlet,
   RouteObject,
-  useLocation,
 } from 'react-router-dom';
 import { LoginPage } from './auth/LoginPage';
 import { LearnPage } from './learn/LearnPage';
 import { RHFPage } from './rhf/HFPage';
-import { Root } from './routes/Root';
+import { Root, ScrollToTop } from './routes/Root';
 import { CenterLayout } from './routes/CenterLayout';
 import { ErrorPage } from './ErrorPage';
 import { sitePath } from './routes/sitemap';
 import { Navbar } from './component/Navbar';
-
-/**
- * @description Scroll restoration. Render it at the top of your app, but below Router
- * @see https://v5.reactrouter.com/web/guides/scroll-restoration
- */
-function ScrollToTop(): ReactNode {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
 
 
 function Skeleton() {
@@ -47,6 +32,10 @@ export const routes: RouteObject[] = [
       {
         element: <Root />,
         children: [
+          {
+            index: true,
+            element: <h1>Hello, React</h1>
+          },
           {
             path: sitePath.tutorial,
             element: <LearnPage />
