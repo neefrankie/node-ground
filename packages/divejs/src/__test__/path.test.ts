@@ -1,4 +1,4 @@
-import { basename, extname, join, resolve } from 'node:path';
+import { basename, dirname, extname, join, resolve } from 'node:path';
 
 describe('basename', () => {
   const filename = '/foo/bar/baz/asdf/quux.html';
@@ -14,7 +14,7 @@ describe('basename', () => {
   });
 });
 
-describe('extension name', () => {
+describe('extname', () => {
   test('should get .html', () => {
     const ext = extname('index.html');
     expect(ext).toEqual('.html');
@@ -34,6 +34,13 @@ describe('extension name', () => {
     const ext = extname('index');
     expect(ext).toEqual('');
   })
+});
+
+describe('dirname', () => {
+  test('dirname', () => {
+    const dir = dirname('/foo/bar/baz/asdf/quux');
+    expect(dir).toEqual('/foo/bar/baz/asdf');
+  });
 });
 
 
