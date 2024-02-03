@@ -1,11 +1,11 @@
 import { renderFile } from './render';
 import { resolve } from 'node:path';
-import { mkdir } from 'node:fs/promises';
 import { PackageJSON } from './lib/PackageJSON';
 import React from 'react';
 import { App } from './template/App';
 import { ScriptProps } from './template/Script';
 import { bootstrapLink } from './template/Style';
+import { mkDirAll } from './lib/io';
 
 export function TestApp(
   props: {
@@ -35,13 +35,6 @@ export function TestApp(
       bodyScripts={bodyJs}
     />
   )
-}
-
-async function mkDirAll(...paths: string[]) {
-  const dir = resolve(...paths);
-  await mkdir(dir, { recursive: true});
-
-  return dir;
 }
 
 async function main() {
