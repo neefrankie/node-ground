@@ -43,7 +43,7 @@ export async function produceLogoAndFav(
 async function main() {
   const configs: Config[] = [
     {
-      input: resolve(__dirname, '../assets/logos/tc-logo.png'),
+      input: resolve(__dirname, '../assets/logos/nj-logo.png'),
       outDir: resolve(__dirname, '../dist/tc')
     },
     {
