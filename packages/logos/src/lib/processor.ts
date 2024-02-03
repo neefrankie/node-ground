@@ -23,6 +23,7 @@ export class SharpSize {
 }
 
 export class ImageProcessor {
+  // Path to input file.
   private inputFile: string;
   private outDir: string;
   private nameNoExt: string;
@@ -33,17 +34,29 @@ export class ImageProcessor {
   private pngOpt?: PngOptions;
   private resizeOpt: ResizeOptions[] = [];
   
-  constructor (input: string, outDir: string) {
+  /**
+   * 
+   * @param input - absolute path to input file.
+   * @param outDir - where to put the output files
+   * @param name - output file name. If missing, use input file name.
+   */
+  constructor (input: string, outDir: string, name?: string) {
     this.inputFile = input;
     this.outDir = outDir;
-    this.nameNoExt = extractName(input);
+    if (name) {
+      this.nameNoExt = extractName(name);
+    } else {
+      this.nameNoExt = extractName(input);
+    }
   }
 
+  // For svg file, read if as utf-8 string.
   async loadSvg() {
     if (!isSvg(this.inputFile)) {
       return;
     }
 
+    // If svg already loaded, stop.
     if (this.svgContent) {
       return this;
     }
@@ -53,7 +66,10 @@ export class ImageProcessor {
     return this;
   }
 
+  // Turn svg strting into Buffer, or read input file
+  // directly as Buffer if it is a binary format.
   async fillBuffer() {
+    // If input is svg, turn the string into buffer.
     if (this.svgContent) {
       if (!this.buffer) {
         this.buffer = Buffer.from(this.svgContent);
@@ -61,10 +77,12 @@ export class ImageProcessor {
       return;
     }
 
+    // otherwise read the file as buffer.
     this.buffer = await readFile(this.inputFile);
     return this;
   }
 
+  // Optimize svg and save it to file.
   async optmizeSvg() {
     await this.loadSvg();
 
@@ -75,6 +93,9 @@ export class ImageProcessor {
 
     console.log('Saved SVG: ', outFile);
 
+    // Update svg content so that the optimized version
+    // is used when converting to png.
+    this.svgContent = result.data;
     return this;
   }
 
@@ -82,11 +103,13 @@ export class ImageProcessor {
     return sharp(this.buffer);
   }
 
+  // Set sharp resize options.
   setSizes(opts: ResizeOptions[]) {
     this.resizeOpt = opts;
     return this;
   }
 
+  // Add a sharp resize option.
   addSize(opt: ResizeOptions) {
     this.resizeOpt.push(opt);
     return this;
@@ -105,6 +128,7 @@ export class ImageProcessor {
       .resize(resize)
       .toBuffer();
 
+    // add size suffix if exists
     let parts: string[] = [];
     if (resize) {
       parts.push('-');
@@ -126,7 +150,11 @@ export class ImageProcessor {
     return this;
   }
 
-  async toPng(resize?: ResizeOptions) {
+  // Convert input file to pngs.
+  // It will output a single file if there's no resize options.
+  // If there are multiple resize options, multiple files will
+  // be generated with size appended to file name.
+  async toPng() {
     if (this.resizeOpt.length == 0) {
       return this.createPng();
     }
