@@ -49,7 +49,7 @@ export async function fav(sourceFile: string, outDir: string) {
 }
 
 async function main() {
-  const sourceFile = resolve(__dirname, '../svg/brand-ftc-logo-square.svg');
+  const sourceFile = resolve(__dirname, '../../assets/ftc/brand-ftc-logo-square.svg');
   const outDir = await mkDirDist('favicons');
 
 	await fav(sourceFile, outDir)
