@@ -1,8 +1,5 @@
 import { JSDOM } from 'jsdom';
 import { basename, resolve } from 'node:path';
-import { PackageJSON } from './PackageJSON';
-import { cp, mkdir, writeFile } from 'node:fs/promises';
-import { Config } from './config';
 
 /**
  * Add prefix to css and js bundle.
@@ -47,77 +44,3 @@ export async function prependAssetsUrl(fileName: string, urlPrefix: string): Pro
   return dom.serialize();
 }
 
-/**
- * Generate HTML modified from `from` file by modifying static assets url and write to `to` file.
- * @param to - the file name to write to
- * @param from - the html file name to modify static asset url.
- */
-export async function generateServerHtml(props: {
-  to: string,
-  from: string,
-  prefix: string,
-}) {
-  console.log(`Modify static asset url in html file ${props.from}`);
-  const htmlContent = await prependAssetsUrl(
-    props.from,
-    props.prefix,
-  );
-
-  // Output html to current directory.
-  // It will be copied by shelljs together with js and css.
-  await writeFile(
-    props.to,
-    htmlContent,
-    { encoding: 'utf8' });
-  
-  console.log(`Modified html file saved to ${props.to}`);
-}
-
-export async function generateVersionFile(to: string, version: string) {
-  await writeFile(
-    to,
-    version,
-    { encoding: 'utf8' },
-  );
-
-  console.log(`Created client version file ${to}`);
-}
-
-export async function copyFiles(config: Config) {
-  
-  console.log(`Copy frontend assets to ${config.deployAssetDir}`);
-  await mkdir(config.deployAssetDir, { recursive: true });
-  await cp(config.sourceJsFile, config.deployAssetDir);
-  await cp(config.sourceCssFile, config.deployAssetDir);
-
-  await mkdir(config.deployHtmlDir, { recursive: true });
-
-  console.log(`Copy html file to ${config.deployHtmlDir}`);
-  await cp(config.targetHtmlFile, config.deployHtmlDir);
-
-  console.log(`Copy client version file to ${config.deployRootDir}`);
-  await cp(config.targetVersionFile, config.deployRootDir);
-}
-
-/**
- * Generate required files for production.
- * Pass command argument `--prod=true` will copy
- * js and css files to production directory.
- * @param config 
- */
-export async function deploy(config: Config) {
-  await generateServerHtml({
-    to: config.targetHtmlFile,
-    from: config.sourceHtmlFile,
-    prefix: config.staticPrefix,
-  });
-
-  const pkg = await (new PackageJSON(config.packageDir)).load();
-
-  await generateVersionFile(
-    config.targetVersionFile,
-    pkg.bootstrapVersion,
-  );
-
-  await copyFiles(config);
-}

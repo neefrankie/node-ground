@@ -1,23 +1,14 @@
 import React from 'react';
 
-export function StyleLink(props: { href: string }) {
+function StyleLink(props: { href: string }) {
   return <link href={props.href} rel="stylesheet" />;
 }
 
-export function BootstrapLink(
-  props: {
-    version: string
-  }
-) {
-  return (
-    <link 
-      rel="stylesheet"
-      href={`https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/${props.version}/css/bootstrap.min.css`}
-    />
-  )
+export function bootstrapLink(version: string) {
+  return `https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/${version}/css/bootstrap.min.css`;
 }
 
-export function InlineStyle(
+function InlineStyle(
   props: {
     value: string;
   }
@@ -31,8 +22,28 @@ export function InlineStyle(
   );
 }
 
-export function RootFullHeight() {
+function StyleFullHeight() {
   const style = `#root { min-height: 100vh;}`;
   
   return <InlineStyle value={style} />
+}
+
+export function Styles(
+  props: {
+    fullHeight?: boolean;
+    links?: string[];
+    inline?: string;
+  }
+) {
+  return (
+    <>
+      { props.fullHeight && <StyleFullHeight /> }
+      { props.inline && <InlineStyle value={props.inline} /> }
+      {
+        props.links && props.links.map((link, i) => 
+          <StyleLink href={link} key={i} />
+        )
+      }
+    </>
+  );
 }

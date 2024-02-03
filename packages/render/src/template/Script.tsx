@@ -6,7 +6,7 @@ export type ScriptProps = {
   async?: boolean;
 };
 
-export function Script(
+function Script(
   props: ScriptProps,
 ) {
   return (
@@ -17,3 +17,21 @@ export function Script(
     ></script>
   )
 }
+
+export function Scripts(
+  props: {
+    scripts?: ScriptProps[];
+  }
+) {
+  return (
+    <>
+      {
+        props.scripts &&
+        props.scripts.map((attr, i) => (
+          <Script src={attr.src} type={attr.type} async={attr.async} key={i} />
+        ))
+      }
+    </>
+  );
+}
+

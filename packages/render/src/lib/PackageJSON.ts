@@ -4,9 +4,12 @@ import { resolve } from 'node:path';
 interface PkgFile {
   name: string;
   version: string;
-  devDependencies: {
+  devDependencies?: {
     bootstrap: string;
   };
+  dependencies?: {
+    bootstrap: string;
+  }
 }
 
 export class PackageJSON {
@@ -28,6 +31,15 @@ export class PackageJSON {
       throw new Error('call load first');
     }
     
-    return this.content?.devDependencies.bootstrap.replace('^', '')
+    let version = this.content?.devDependencies?.bootstrap;
+    if (!version) {
+      version = this.content?.dependencies?.bootstrap;
+    }
+
+    if (!version) {
+      throw new Error('bootstrap not installed');
+    }
+
+    return version.replace('^', '')
   }
 }
