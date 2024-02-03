@@ -1,23 +1,25 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "strict": true,
-    "outDir": "dist",
-    "noImplicitAny": true,
-    "module": "ES6",
     "target": "es6",
-    "jsx": "react",
-    "allowJs": true,
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ES6",
+    "skipLibCheck": true,
+    "outDir": "dist",
+
     "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/*",
-      ]
-    }
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
   },
   "include": [
       "src/**/*",
