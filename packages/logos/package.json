@@ -5,11 +5,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postversion": "git push && git push --tags",
-    "svg": "ts-node src/svg2png.ts",
-    "fav": "ts-node src/fav.ts",
+    "logo": "ts-node src/lib/processor.ts",
+    "fav": "ts-node src/lib/fav.ts",
     "clean": "shx rm -rf dist/*",
     "build": "ts-node ./src/logo-fav.ts",
-    "build-test": "ts-node ./src/ftc.ts"
+    "dev": "ts-node ./src/ftc.ts"
   },
   "author": "weiguo.ni",
   "license": "MIT",
