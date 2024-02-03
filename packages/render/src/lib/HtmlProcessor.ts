@@ -133,6 +133,24 @@ export class HtmlProcessor {
 
     return this;
   }
+
+  replaceReactRoot(id: string, replacer: string) {
+    const doc = this.dom.window.document;
+    const elem = doc.getElementById(id);
+    if (!elem) {
+      return;
+    }
+
+    const parent = elem.parentNode;
+    if (!parent) {
+      return;
+    }
+
+    parent.removeChild(elem);
+    parent.textContent = replacer;
+
+    return this;
+  }
 }
 
 async function main() {
