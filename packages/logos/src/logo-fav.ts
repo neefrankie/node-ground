@@ -18,20 +18,25 @@ export async function produceLogoAndFav(
     outDir = resolve(__dirname, '../dist'),
   } = config;
 
-  const [_, favDir] = await Promise.all([
-    mkDirAll(outDir),
+  // Ensure output directories exists
+  const [logoDir, favDir] = await Promise.all([
+    mkDirAll(resolve(outDir, 'logos')),
     mkDirAll(resolve(outDir, 'fav'))
-  ])
+  ]);
 
-  const p = (new ImageProcessor(input, outDir))
+  // Initiate ImageProcessor
+  const p = (new ImageProcessor(input, logoDir))
     .setSizes(sizes.map(SharpSize.square));
 
+  // If input is svg, optimize and save it.
   if (isSvg(input)) {
     await p.optmizeSvg();
   }
 
+  // Output multiple pngs
   await p.toPng();
 
+  // Generate favicons.
   await fav(input, favDir);
 }
 
