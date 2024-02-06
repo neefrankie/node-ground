@@ -1,5 +1,5 @@
 import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
-import { InputSlot, toggleInputClass } from './InputSlot';
+import { InputBaseProps, InputSlot, toggleInputClass } from './InputSlot';
 
 export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -8,19 +8,28 @@ export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> 
 }
 
 export const TextAreaInput = forwardRef(function TextAreaInput(
-  props: TextAreaProps,
+  props: InputBaseProps & InputHTMLAttributes<HTMLTextAreaElement>,
   ref?: ForwardedRef<HTMLTextAreaElement>
 ) {
 
   const inputCls = toggleInputClass(!!props.error);
 
+  const {
+    label,
+    desc,
+    error,
+    ...attr
+  } = props;
+
   return (
     <InputSlot
-      {...props}
+      label={label}
+      desc={desc}
+      error={error}
     >
       <textarea
         className={inputCls}
-        {...props}
+        {...attr}
         ref={ref}
       />
     </InputSlot>

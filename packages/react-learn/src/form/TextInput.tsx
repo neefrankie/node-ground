@@ -13,24 +13,24 @@ export const TextInput = forwardRef(function TextControl(
 // properties to to input tag. One approach is to define an
 // extra key containing all InputHTMLAttributes.
 // Another way is use the rest operator like this:
-//   const {
-//     label,
-//     desc,
-//     error,
-//     ...attr
-//   } = props;
+  const {
+    label,
+    desc,
+    error,
+    ...attr
+  } = props;
 // attr will contain all InputHTMLAttributes without label,
 // desc, error fields.
 
   return (
     <InputSlot
-      labelFor={props.name}
-      label={props.label}
-      desc={props.desc}
-      error={props.error}
+      labelFor={attr.name}
+      label={label}
+      desc={desc}
+      error={error}
     >
       <input
-        {...props}
+        {...attr}
         className={inputCls}
         id={props.name}
         ref={ref}

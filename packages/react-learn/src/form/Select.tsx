@@ -7,21 +7,29 @@ export const Select = forwardRef(function Select(
   } & SelectHTMLAttributes<HTMLSelectElement>,
   ref?: ForwardedRef<HTMLSelectElement>,
 ) {
+  const {
+    label,
+    desc,
+    error,
+    options,
+    ...attr
+  } = props;
+
   return (
     <InputSlot
-      labelFor={props.name}
-      label={props.label}
-      desc={props.desc}
-      error={props.error}
+      labelFor={attr.name}
+      label={label}
+      desc={desc}
+      error={error}
     >
       <select
-        {...props}
+        {...attr}
         className='form-select'
-        id={props.name}
+        id={attr.name}
         ref={ref}
       >
         {
-          props.options.map((opt, i) =>
+         options.map((opt, i) =>
             <option
               key={i}
               selected={opt.selected}
