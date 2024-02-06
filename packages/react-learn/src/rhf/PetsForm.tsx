@@ -50,8 +50,6 @@ export function PetsForm() {
     console.log(data);
     return sleep(2000, data);
   };
-
-  console.log(watch('adoptedOn'));
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
