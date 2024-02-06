@@ -1,5 +1,5 @@
 import { OptionHTMLAttributes } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { TextInput } from '../form/TextInput';
@@ -19,6 +19,7 @@ const idSchema = z.object({
   idNumber: z.string().min(18).max(19),
   firstName: z.string().min(8),
   lastName: z.string(),
+  gender: z.string(),
 })
 .required();
 
@@ -38,7 +39,6 @@ export function IDForm() {
     register, 
     handleSubmit, 
     formState,
-    control,
     watch,
   } = useForm<IDValues>({
     mode: 'onChange',
@@ -47,7 +47,7 @@ export function IDForm() {
       firstName: '',
       lastName: '',
       birthday: new Date(),
-      gender: null,
+      gender: Gender.Female,
     },
     resolver: zodResolver(idSchema),
   });
@@ -81,23 +81,6 @@ export function IDForm() {
         error={dirtyFields.lastName ? errors.lastName?.message : undefined}
         {...register('lastName')}
       />
-
-      {/* <div className='mb-3'>
-        <label className='me-3'>
-          Birthday
-        </label>
-        <Controller
-          name='birthday'
-          control={control}
-          render={({ field }) =>
-            <ReactDatePicker
-              onChange={field.onChange}
-              onBlur={field.onBlur}
-              selected={field.value}
-            />
-          }
-        />
-      </div> */}
 
       <Select
         label='Gender'
