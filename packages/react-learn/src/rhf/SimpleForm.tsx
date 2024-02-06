@@ -3,16 +3,21 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { sleep } from '../util/sleep';
 import { z } from 'zod';
 import { SubmitButton } from '../form/SubmitButton';
+import { toggleInputClass } from '../form/InputSlot';
 
+// A zod schema must include all fields of the form.
+// any missing field in the schema will not be submitted.
 const loginSchema = z.object({
   email: z.string().email().trim(),
   password: z.string().min(8),
+  title: z.string(),
 })
 .required();
 
 type ILoginValues = {
   email: string;
   password: string;
+  title: string;
 };
 
 export function SimpleForm() {
@@ -27,6 +32,7 @@ export function SimpleForm() {
     defaultValues: {
       email: '',
       password: '',
+      title: ''
     },
     resolver: zodResolver(loginSchema),
   });
@@ -36,7 +42,7 @@ export function SimpleForm() {
     return sleep(2000, data);
   };
 
-  console.log(watch('email'));
+  console.log(watch('title'));
 
   const emailErr = dirtyFields.email ? errors.email?.message : undefined;
   const pwErr = dirtyFields.password ? errors.password?.message : undefined;
@@ -45,10 +51,11 @@ export function SimpleForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
 
       <div className='mb-3'>
-        <label htmlFor="">Email</label>
+        <label htmlFor="email">Email</label>
         <input 
-          className={`form-control${emailErr ? ' is-invalid' : ''}`}
+          className={toggleInputClass(!!emailErr)}
           {...register('email')} 
+          id='password'
         />
         {
           emailErr &&
@@ -57,15 +64,32 @@ export function SimpleForm() {
       </div>
       
       <div className='mb-3'>
-        <label htmlFor="">Password</label>
+        <label htmlFor="password">Password</label>
         <input
-          className={`form-control${pwErr ? ' is-invalid' : ''}`}
+          className={toggleInputClass(!!pwErr)}
           {...register('password')}
+          id='password'
         />
         {
           pwErr &&
           <div className="invalid-feedback">{pwErr}</div>
         }
+      </div>
+
+      <div className='mb-3'>
+        <label htmlFor="title">Choose a your title:</label>
+
+        <select
+          id='title'
+          className='form-select'
+          {...register("title", { required: true })}
+        >
+          <option value="">--Please choose an option--</option>
+          <option value="Mr">Mr</option>
+          <option value="Mrs">Mrs</option>
+          <option value="Miss">Miss</option>
+          <option value="Dr">Dr</option>
+        </select>
       </div>
 
       <SubmitButton 
