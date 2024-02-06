@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Time</title>
+</head>
+<body>
+  <div>
+    <label for="start">Start date:</label>
+    <input type="date" id="start" name="strip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+  </div>
+
+  <div>
+    <label for="meeting-time">Choose a time for your appointment:</label>
+
+    <input type="datetime-local"
+      id="meeting-time"
+      name="meeting-time"
+      value="2018-06-12T19:30"
+      min="2018-06-07T00:00"
+      max="2018-06-14T00:00"
+    >
+  </div>
+
+  <div>
+    <select name="timezone" id="timezone">
+      <option value="Pacific/Kwajalein">Eniwetok, Kwajalein</option>
+      <option value="Pacific/Midway">Midway Island, Samoa</option>
+      <option value="Pacific/Honolulu">Hawaii</option>
+      <option value="Pacific/Marquesas">Taiohae</option>
+      <!-- and so on -->
+    </select>
+  </div>
+</body>
+<script>
+var dateControl = document.querySelector('input[type="date"]');
+
+dateControl.value = '2017-06-01';
+
+console.log(dateControl.value); // 2017-06-01
+console.log(dateControl.valueAsNumber); // 1496275200000
+</script>
+</html>
