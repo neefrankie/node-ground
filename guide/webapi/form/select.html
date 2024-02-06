@@ -17,5 +17,16 @@
     <option value="spider">Spider</option>
     <option value="goldfish">Goldfish</option>
   </select>
+
+  <div class="result"></div>
 </body>
+
+<script>
+const selectElement = document.querySelector("#pet-select");
+const result = document.querySelector(".result");
+
+selectElement.addEventListener("change", (event) => {
+  result.textContent = `You like ${event.target.value}`;
+});
+</script>
 </html>
