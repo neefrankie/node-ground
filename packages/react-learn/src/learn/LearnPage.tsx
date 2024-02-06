@@ -1,4 +1,3 @@
-import React from 'react';
 import { Messenger } from './Chat';
 import { CityQuizForm } from './CityQuiz';
 import { NameForm } from './NameForm';

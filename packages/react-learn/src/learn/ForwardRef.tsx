@@ -7,7 +7,7 @@
 // Sometimes it's useful to expose a DOM node to the parent.
 // Wrap your component definition into `forwardRef`.
 
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { TextInput } from '../form/TextInput';
 
 export function FocusForm() {

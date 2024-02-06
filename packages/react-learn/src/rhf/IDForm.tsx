@@ -1,8 +1,7 @@
-import React, { OptionHTMLAttributes } from 'react';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { OptionHTMLAttributes } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import ReactDatePicker from 'react-datepicker';
 import { TextInput } from '../form/TextInput';
 import { sleep } from '../util/sleep';
 import { SubmitButton } from '../form/SubmitButton';

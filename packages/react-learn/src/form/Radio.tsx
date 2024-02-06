@@ -1,6 +1,6 @@
-import React, { ForwardedRef, forwardRef } from 'react';
-import { InputProps } from './InputSlot';
+import { ForwardedRef, forwardRef } from 'react';
 import classNames from 'classnames';
+import { InputProps } from './InputSlot';
 
 export const Radio = forwardRef(function (
   props: Omit<InputProps, 'type' | 'desc'>,

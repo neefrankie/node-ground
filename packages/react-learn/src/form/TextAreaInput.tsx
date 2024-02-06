@@ -1,4 +1,4 @@
-import React, { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
+import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
 import { InputSlot, toggleInputClass } from './InputSlot';
 
 export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {

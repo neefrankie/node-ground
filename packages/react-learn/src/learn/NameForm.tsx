@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { TextInput } from '../form/TextInput';
 
 // Choosing the state structure

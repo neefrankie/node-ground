@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 import { InputProps } from './InputSlot';
 import classNames from 'classnames';
 

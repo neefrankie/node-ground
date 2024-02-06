@@ -1,4 +1,4 @@
-import React, { ForwardedRef, OptionHTMLAttributes, SelectHTMLAttributes, forwardRef } from 'react';
+import { ForwardedRef, OptionHTMLAttributes, SelectHTMLAttributes, forwardRef } from 'react';
 import { InputBaseProps, InputSlot } from './InputSlot';
 
 export const Select = forwardRef(function Select(
