@@ -1,36 +1,69 @@
-import { ForwardedRef, forwardRef } from 'react';
-import classNames from 'classnames';
-import { InputProps } from './InputSlot';
+import { ForwardedRef, InputHTMLAttributes, OptionHTMLAttributes, forwardRef } from 'react';
+import { ChangeHandler } from 'react-hook-form';
 
 export const Radio = forwardRef(function (
-  props: Omit<InputProps, 'type' | 'desc'>,
+  props: {
+    children?: React.ReactNode;
+  } & InputHTMLAttributes<HTMLInputElement>,
   ref?: ForwardedRef<HTMLInputElement>
 ) {
-
-  const inputCls = classNames('form-check-input', {
-    'is-invalid': !!props.error,
-  });
   
+  const {
+    children,
+    ...attr
+  } = props;
+
   return (
     <div className="mb-3 form-check">
       <input
-        {...props}
+        {...attr}
         type='radio'
-        className={inputCls}
+        className='form-check-input'
+        id={attr.id}
         ref={ref}
       />
+      <label 
+        className="form-check-label" 
+        htmlFor={attr.id}
+      >
+        {children}
+      </label>
+    </div>
+  );
+});
+
+export const RadioGroup = forwardRef(function(
+  props: {
+    title?: string;
+    items: OptionHTMLAttributes<HTMLSelectElement>[],
+    name?: string | undefined;
+    onChange?: ChangeHandler;
+    onBlur?: ChangeHandler
+  },
+  ref?: ForwardedRef<HTMLInputElement>
+) {
+
+  return (
+    <div className='mb-3'>
       {
-        props.label &&
-        <label 
-          className="form-check-label" 
-          htmlFor={props.id}
-        >
-          {props.label}
-        </label>
+        props.title &&
+        <div className='form-label'>{props.title}</div>
       }
+
       {
-        props.error &&
-        <div className="invalid-feedback">{props.error}</div>
+        props.items.map((item, i) =>
+          <Radio
+            key={i}
+            name={props.name}
+            onChange={props.onChange}
+            onBlur={props.onBlur}
+            id={`${props.name}-${i}`}
+            value={item.value}
+            ref={ref}
+          >
+            {item.label}
+          </Radio>
+        )
       }
     </div>
   );
