@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ActionType } from './task';
 import { useTasksDispatch } from './TasksContext';
 

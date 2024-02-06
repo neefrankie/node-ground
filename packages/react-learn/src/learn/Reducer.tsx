@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 import { ActionType, Task, tasksReducer } from './task/task';
 
 export function TaskApp() {

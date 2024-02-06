@@ -1,4 +1,3 @@
-import React from 'react';
 import { SimpleForm } from './SimpleForm';
 import { IDForm } from './IDForm';
 import { MobileForm } from './MobileForm';

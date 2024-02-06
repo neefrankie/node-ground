@@ -1,6 +1,5 @@
 import { useState, FormEvent } from 'react';
 import { TextAreaInput } from '../form/TextAreaInput';
-import React from 'react';
 
 // Reacting to input with state
 export function CityQuizForm() {

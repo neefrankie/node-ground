@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Effect let you run some code after rendering.
 // Use them to synchronize your compnent with a system outside of React.

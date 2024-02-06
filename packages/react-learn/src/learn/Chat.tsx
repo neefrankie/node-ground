@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // Preserving and resetting state
 // When you re-render a component, React needs to decide which parts of the tree

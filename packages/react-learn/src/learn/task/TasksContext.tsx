@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactNode, createContext, useContext, useReducer } from 'react';
+import { Dispatch, ReactNode, createContext, useContext, useReducer } from 'react';
 import { Action, Task, tasksReducer } from './task';
 
 const TasksContext = createContext<Task[]>([]);

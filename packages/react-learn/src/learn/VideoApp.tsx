@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react';
+import { ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react';
 
 // Demonstrate the use of ForwardRef together with useRef, useEffect.
 function VideoPlayer(

@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { ILink, navItems } from './sitemap';
 

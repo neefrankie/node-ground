@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 
 export function useInterval(callback: Function, delay: number | null) {

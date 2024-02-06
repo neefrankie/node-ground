@@ -1,4 +1,4 @@
-import React, { useRef }from 'react';
+import { useRef }from 'react';
 
 // Like state, refs are retained by React between re-renders.
 // However, setting state re-renders a component. Change a ref does not.
