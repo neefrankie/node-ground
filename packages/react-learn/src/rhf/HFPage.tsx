@@ -1,6 +1,7 @@
 import { SimpleForm } from './SimpleForm';
 import { IDForm } from './IDForm';
 import { MobileForm } from './MobileForm';
+import { PetsForm } from './PetsForm';
 
 export function RHFPage() {
   return (
@@ -11,6 +12,8 @@ export function RHFPage() {
       <MobileForm />
       <h2 className='mt-5'>ID Card</h2>
       <IDForm />
+      <h2 className='mt-5'>Register your pets</h2>
+      <PetsForm />
     </>
   );
 }
