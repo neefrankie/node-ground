@@ -1,62 +1,28 @@
-import { InputHTMLAttributes } from 'react';
+import { FormLabel, FormText, InvalidFeedback } from './Input';
 import classNames from 'classnames';
-
-export type InputBaseProps = {
-  label?: string;
-  desc?: string;
-  error?: string
-};
-
-export type InputProps = InputBaseProps & InputHTMLAttributes<HTMLInputElement>;
+import { InputSlotProps } from './Input';
 
 export function InputSlot(
   props: {
-    labelFor?: string;
+    htmlFor?: string;
     children: JSX.Element;
     className?: string;
-  } & InputBaseProps,
+  } & InputSlotProps,
 ) {
 
-  return (
-    <div className={`${props.className ? props.className : 'mb-3'}`}>
-      {
-        props.label &&
-        <label 
-          htmlFor={props.labelFor} 
-          className="form-label"
-        >
-          {props.label}
-        </label>
-      }
-      
-      {props.children}
+  const cls = classNames('mb-3', props.className);
 
-      {
-        props.desc &&
-        <div className="form-text">{props.desc}</div>
-      }
-      {
-        props.error &&
-        <div className="invalid-feedback">{props.error}</div>
-      }
+  return (
+    <div className={cls}>
+      <FormLabel
+        htmlFor={props.htmlFor}
+        text={props.label}
+      />
+      {props.children}
+      <FormText>{props.desc}</FormText>
+      <InvalidFeedback text={props.error} />
     </div>
   );
 };
 
-export function toggleInputClass(invalid: boolean): string {
-  return classNames('form-control', {
-    'is-invalid': invalid,
-  });
-}
 
-export function FormText(
-  props: {
-    children: string | JSX.Element
-  }
-) {
-  return (
-    <small className="form-text text-muted">
-      {props.children}
-    </small>
-  )
-}

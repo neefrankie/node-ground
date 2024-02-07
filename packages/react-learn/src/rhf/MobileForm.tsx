@@ -4,6 +4,9 @@ import { z } from 'zod';
 import { TextInput } from '../form/TextInput';
 import { sleep } from '../util/sleep';
 import { SubmitButton } from '../form/SubmitButton';
+import { SpinButton } from '../component/Button';
+import { useState } from 'react';
+import { InputGroup } from '../form/InputGroup';
 
 interface IMobileValues {
   mobile: string;
@@ -17,6 +20,7 @@ const mobileSchema = z.object({
 .required();
 
 export function MobileForm() {
+  const [ requestingCode, setRequestCode ] = useState(false);
   const { 
     control, handleSubmit, formState, register
   } = useForm<IMobileValues>({
@@ -34,6 +38,11 @@ export function MobileForm() {
     return sleep(2000);
   }
 
+  const onRequestCode = () => {
+    setRequestCode(!requestingCode);
+    sleep(2000);
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextInput
@@ -42,9 +51,18 @@ export function MobileForm() {
         {...register('mobile')}
       />
 
-      <TextInput
+      <InputGroup
         label='Code'
         error={dirtyFields.code ? errors.code?.message : undefined}
+        endAddOn={
+          <SpinButton
+            text='Send'
+            progress={requestingCode}
+            disabled={requestingCode}
+            variant='outline-secondary'
+            onClick={onRequestCode}
+          />
+        }
         {...register('code')}
       />
 

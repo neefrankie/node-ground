@@ -1,5 +1,7 @@
 import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
-import { InputBaseProps, InputSlot, toggleInputClass } from './InputSlot';
+import { InputSlot } from './InputSlot';
+import { InputSlotProps } from './Input';
+import { toggleInputClass } from './toggleInputClass';
 
 export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -8,7 +10,7 @@ export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> 
 }
 
 export const TextAreaInput = forwardRef(function TextAreaInput(
-  props: InputBaseProps & InputHTMLAttributes<HTMLTextAreaElement>,
+  props: InputSlotProps & InputHTMLAttributes<HTMLTextAreaElement>,
   ref?: ForwardedRef<HTMLTextAreaElement>
 ) {
 

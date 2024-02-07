@@ -1,12 +1,12 @@
 import { ForwardedRef, forwardRef } from 'react';
-import { InputProps, InputSlot, toggleInputClass } from './InputSlot';
+import { InputSlot } from './InputSlot';
+import { InputProps } from './Input';
+import { Input } from './Input';
 
 export const TextInput = forwardRef(function TextControl(
   props: InputProps,
   ref?: ForwardedRef<HTMLInputElement>
 ) {
-
-  const inputCls = toggleInputClass(!!props.error);
 
 // If props is a flattened object, and used with spead operator
 // in input: {...props}, it will introduct our extra
@@ -24,14 +24,13 @@ export const TextInput = forwardRef(function TextControl(
 
   return (
     <InputSlot
-      labelFor={attr.name}
+      htmlFor={attr.name}
       label={label}
       desc={desc}
       error={error}
     >
-      <input
+      <Input
         {...attr}
-        className={inputCls}
         id={props.name}
         ref={ref}
       />

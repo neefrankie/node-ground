@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react';
-import { FormText, InputProps } from './InputSlot';
+import { FormText } from './Input';
 import { TextInput } from './TextInput';
 
 type PeriodLenProps = {

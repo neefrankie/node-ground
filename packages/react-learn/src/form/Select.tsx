@@ -1,8 +1,9 @@
 import { ForwardedRef, OptionHTMLAttributes, SelectHTMLAttributes, forwardRef } from 'react';
-import { InputBaseProps, InputSlot } from './InputSlot';
+import { InputSlot } from './InputSlot';
+import { InputSlotProps } from './Input';
 
 export const Select = forwardRef(function Select(
-  props: InputBaseProps & {
+  props: InputSlotProps & {
     options: OptionHTMLAttributes<HTMLSelectElement>[],
   } & SelectHTMLAttributes<HTMLSelectElement>,
   ref?: ForwardedRef<HTMLSelectElement>,
@@ -17,7 +18,7 @@ export const Select = forwardRef(function Select(
 
   return (
     <InputSlot
-      labelFor={attr.name}
+      htmlFor={attr.name}
       label={label}
       desc={desc}
       error={error}

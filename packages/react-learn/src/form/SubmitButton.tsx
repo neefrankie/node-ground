@@ -1,27 +1,4 @@
-import { Spinner } from '../component/Spinner'
-
-function SpinButton(
-  props: {
-    type?: "submit" | "reset" | "button" | undefined;
-    disabled?: boolean;
-    progress?: boolean;
-    text: string;
-  }
-) {
-  return (
-    <button
-      type={props.type}
-      className='btn btn-primary'
-      disabled={props.disabled}
-    >
-      {
-        props.progress ?
-        <Spinner size='sm'/> :
-        props.text
-      }
-    </button>
-  );
-}
+import { SpinButton } from '../component/Button';
 
 export function SubmitButton(
   props: {
@@ -35,10 +12,10 @@ export function SubmitButton(
   return (
     <div className='d-grid mt-3'>
       <SpinButton
+        text={props.text}
+        progress={props.isSubmitting}
         type='submit'
         disabled={!props.isDirty || !props.isValid || props.isSubmitting}
-        progress={props.isSubmitting}
-        text={props.text}
       />
     </div>
   )

@@ -7,9 +7,9 @@ import { LearnPage } from './learn/LearnPage';
 import { RHFPage } from './rhf/HFPage';
 import { Root, ScrollToTop } from './routes/Root';
 import { CenterLayout } from './routes/CenterLayout';
-import { ErrorPage } from './ErrorPage';
 import { sitePath } from './routes/sitemap';
 import { Navbar } from './component/Navbar';
+import { ErrorPage } from './routes/ErrorPage';
 
 
 function Skeleton() {

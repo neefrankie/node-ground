@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { sleep } from '../util/sleep';
 import { z } from 'zod';
 import { SubmitButton } from '../form/SubmitButton';
-import { toggleInputClass } from '../form/InputSlot';
+import { toggleInputClass } from '../form/toggleInputClass';
 
 // A zod schema must include all fields of the form.
 // any missing field in the schema will not be submitted.

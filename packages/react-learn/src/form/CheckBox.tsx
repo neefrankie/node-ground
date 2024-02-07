@@ -1,5 +1,5 @@
 import { ForwardedRef, forwardRef } from 'react';
-import { InputProps } from './InputSlot';
+import { InputProps } from './Input';
 import classNames from 'classnames';
 
 export const CheckBox = forwardRef(function (
