@@ -4,9 +4,10 @@ import { z } from 'zod';
 import { TextInput } from '../form/TextInput';
 import { sleep } from '../util/sleep';
 import { SubmitButton } from '../form/SubmitButton';
-import { SpinButton } from '../component/Button';
+import { Button, SpinButton } from '../component/Button';
 import { useState } from 'react';
 import { InputGroup } from '../form/InputGroup';
+import { useCountDown } from '../hooks/useCountDown';
 
 interface IMobileValues {
   mobile: string;
@@ -14,15 +15,25 @@ interface IMobileValues {
 }
 
 const mobileSchema = z.object({
-  mobile: z.string(),
-  code: z.string(),
+  mobile: z.string().length(11),
+  code: z.string().length(6),
 })
 .required();
 
 export function MobileForm() {
   const [ requestingCode, setRequestCode ] = useState(false);
+
+  const {
+    count,
+    running,
+    start
+  } = useCountDown(60, 1000);
+
   const { 
-    control, handleSubmit, formState, register
+    handleSubmit, 
+    formState, 
+    register,
+    getValues,
   } = useForm<IMobileValues>({
     defaultValues: {
       mobile: '',
@@ -39,8 +50,12 @@ export function MobileForm() {
   }
 
   const onRequestCode = () => {
-    setRequestCode(!requestingCode);
-    sleep(2000);
+    setRequestCode(true);
+    console.log('Rquesting SMS code for ', getValues('mobile'));
+    sleep(2000)
+      .then(() => {
+        start();
+      });
   }
 
   return (
@@ -55,10 +70,17 @@ export function MobileForm() {
         label='Code'
         error={dirtyFields.code ? errors.code?.message : undefined}
         endAddOn={
+          running ?
+          <Button
+            disabled={running || isSubmitting}
+            variant='outline-primary'
+          >
+            {count}
+          </Button> :
           <SpinButton
             text='Send'
             progress={requestingCode}
-            disabled={requestingCode}
+            disabled={!(dirtyFields.mobile && !errors.mobile) || requestingCode || isSubmitting}
             variant='outline-secondary'
             onClick={onRequestCode}
           />
