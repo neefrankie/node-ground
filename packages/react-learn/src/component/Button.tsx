@@ -9,7 +9,7 @@ export function Button(
   props: {
     variant?: BtnVariant;
     size?: BtnSize;
-    children: string | JSX.Element | JSX.Element[];
+    children: React.ReactNode;
   } & ButtonHTMLAttributes<HTMLButtonElement>
 ) {
   
