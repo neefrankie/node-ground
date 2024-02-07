@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState }from 'react';
-import { useCountDown } from '../hooks/useDountDown';
+import { useCountDown } from '../hooks/useCountDown';
 
 // Like state, refs are retained by React between re-renders.
 // However, setting state re-renders a component. Change a ref does not.
