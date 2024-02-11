@@ -32,6 +32,7 @@ export const TextInput = forwardRef(function TextControl(
       <Input
         {...attr}
         id={props.name}
+        invalid={!!error}
         ref={ref}
       />
     </InputSlot>
