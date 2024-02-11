@@ -10,6 +10,7 @@ import { CenterLayout } from './routes/CenterLayout';
 import { sitePath } from './routes/sitemap';
 import { Navbar } from './component/Navbar';
 import { ErrorPage } from './routes/ErrorPage';
+import Cookie from 'js-cookie';
 
 
 function Skeleton() {
@@ -33,7 +34,7 @@ export const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            element: <h1>Hello, React</h1>
+            element: <Hello />
           },
           {
             path: sitePath.tutorial,
@@ -59,3 +60,20 @@ export const routes: RouteObject[] = [
   }
 ];
 
+function Hello() {
+  document.cookie = "test1=Hello; SameSite=None; Secure";
+  document.cookie = "test2=World; SameSite=None; Secure";
+
+  console.log(document.cookie);
+
+  const cookieValue = document.cookie.split(";")
+    .find((row) => row.startsWith("test2="))
+    ?.split("=")[1];
+
+  console.log(cookieValue);
+
+  console.log(Cookie.get('test1'));
+  return (
+    <h1>Hello React!</h1>
+  )
+}
