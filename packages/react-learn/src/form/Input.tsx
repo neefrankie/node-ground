@@ -67,7 +67,7 @@ export function FormText(
     children?: string | JSX.Element;
   }
 ) {
-  if (props.children) {
+  if (!props.children) {
     return null;
   }
 
