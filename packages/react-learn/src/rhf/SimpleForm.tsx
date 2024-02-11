@@ -4,6 +4,7 @@ import { sleep } from '../util/sleep';
 import { z } from 'zod';
 import { SubmitButton } from '../form/SubmitButton';
 import { toggleInputClass } from '../form/toggleInputClass';
+import { TextInput } from '../form/TextInput';
 
 // A zod schema must include all fields of the form.
 // any missing field in the schema will not be submitted.
@@ -47,6 +48,8 @@ export function SimpleForm() {
   const emailErr = dirtyFields.email ? errors.email?.message : undefined;
   const pwErr = dirtyFields.password ? errors.password?.message : undefined;
 
+  console.log(emailErr);
+  
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -62,6 +65,12 @@ export function SimpleForm() {
           <div className="invalid-feedback">{emailErr}</div>
         }
       </div>
+
+      {/* <TextInput
+        label='Mobile'
+        error={dirtyFields.email ? errors.email?.message : undefined}
+        {...register('email')}
+      /> */}
       
       <div className='mb-3'>
         <label htmlFor="password">Password</label>

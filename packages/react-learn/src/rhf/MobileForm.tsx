@@ -35,6 +35,7 @@ export function MobileForm() {
     register,
     getValues,
   } = useForm<IMobileValues>({
+    mode: 'onChange',
     defaultValues: {
       mobile: '',
       code: '',
@@ -57,6 +58,8 @@ export function MobileForm() {
         start();
       });
   }
+
+  const mobileErr = dirtyFields.mobile ? errors.mobile?.message : undefined;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
