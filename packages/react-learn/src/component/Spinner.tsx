@@ -1,23 +1,23 @@
+import classNames from 'classnames';
+import { HTMLAttributes } from 'react';
+
+export type SpinnerAnim = 'border' | 'grow';
+export type SpinnerVariant = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
 
 export function Spinner(
   props: {
-    animation?: 'border' | 'grow';
-    variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+    animation?: SpinnerAnim;
+    variant?: SpinnerVariant;
     size?: 'sm';
-  }
+  } & HTMLAttributes<HTMLSpanElement>
 ) {
 
-  let anim = props.animation ? props.animation : 'border';
-  
-  let cls = `spinner-${anim}`;
+  const anim = props.animation ? props.animation : 'border';
 
-  if (props.variant) {
-    cls += ` text-${props.variant}`;
-  }
-  
-  if (props.size) {
-    cls += ` spinner-${anim}-${props.size}`;
-  }
+  const cls = classNames(`spinner-${anim}`, props.className, {
+    [`text-${props.variant}`]: props.variant,
+    [`spinner-${anim}-${props.size}`]: props.size,
+  });
 
   return (
     <span className={cls} role="status"></span>
