@@ -1,9 +1,9 @@
-import express, { response } from 'express';
+import express from 'express';
 import { configure } from 'nunjucks';
 import { resolve } from 'path';
 import ws from 'ws';
-import { homePageCtx } from './server/model/page';
-import apiRouter from './server/api';
+import { homePageCtx } from './model/page';
+import apiRouter from './api';
 
 const app = express();
 const port = 3000;
