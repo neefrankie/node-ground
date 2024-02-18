@@ -7,6 +7,7 @@ export interface ILink {
 export const sitePath = {
   tutorial: 'tutorial',
   hookForm: 'hook-form',
+  mui: 'material-ui',
   auth: 'auth',
   login: 'login',
   forgotPassword: 'forgot-password',
@@ -23,6 +24,10 @@ export const navItems: ILink[] = [
   {
     name: 'React Hook Form',
     href: `/${sitePath.hookForm}`,
+  },
+  {
+    name: 'Matierial UI',
+    href: `/${sitePath.mui}`,
   },
   {
     name: 'Login',

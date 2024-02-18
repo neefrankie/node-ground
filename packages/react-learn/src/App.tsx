@@ -5,19 +5,21 @@ import {
 import { LoginPage } from './learn/LoginPage';
 import { LearnPage } from './learn/LearnPage';
 import { RHFPage } from './rhf/HFPage';
-import { Root, ScrollToTop } from './routes/Root';
+import { Root } from './routes/Root';
+import { ScrollToTop } from './routes/ScrollToTop';
 import { CenterLayout } from './routes/CenterLayout';
 import { sitePath } from './routes/sitemap';
 import { Navbar } from './component/Navbar';
 import { ErrorPage } from './routes/ErrorPage';
 import Cookie from 'js-cookie';
+import { MUIPage } from './mui/MUIPage';
 
 
 function Skeleton() {
   return (
     <>
       <Navbar />
-      <ScrollToTop />
+        <ScrollToTop />
       <Outlet />
     </>
   );
@@ -43,6 +45,10 @@ export const routes: RouteObject[] = [
           {
             path: sitePath.hookForm,
             element: <RHFPage />
+          },
+          {
+            path: sitePath.mui,
+            element: <MUIPage />
           },
         ]
       },
