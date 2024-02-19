@@ -27,7 +27,7 @@ function TopAppBar() {
             <Box
               component='img'
               sx={{ objectFit: 'contain', height: 1 }}
-              src='images/logo-100x100.png'
+              src='/images/logo-100x100.png'
             />
           </Link>
         </Typography>
