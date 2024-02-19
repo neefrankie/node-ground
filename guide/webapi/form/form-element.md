@@ -63,9 +63,9 @@ The value of the form's `accept-charset` HTML attribute, represeting the charact
 
 ## SubmitEvent
 
-SubmitEvnet -> Event
+SubmitEvent -> Event
 
-The `submit` event fires on the `<form>` element itself, not on any <button> or <input type="submit"> inside it.
+The `submit` event fires on the `<form>` element itself, not on any `<button>` or `<input type="submit">` inside it.
 
 The `submit` event fires when the user clicks a `submit button`.
 

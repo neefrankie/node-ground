@@ -59,7 +59,11 @@ Indicates whether or not the event can bubble across the boundary between the sh
 
 * `currentTarget`: Object, readonly
 
-A reference to the currently registered target for the event. This is the object to which the event is currently slated to be sent. This is the element that addEventListener registered.
+A reference to the currently registered target for the event. This is the object to which the event is currently slated to be sent. This is the element that `addEventListener` registered.
+
+```js
+Object.fromEntries(new FormData(event.currentTarget).entries())
+```
 
 * `defaultPrevented`: boolean, readonly
 
@@ -67,9 +71,9 @@ Indicates whether or not `event.preventDefault()` has been called on the event.
 
 * `eventPhase`, readonly
 
-* originalTarget, readonly
+* `originalTarget`, readonly
 
-* target, readonly
+* `target`, readonly
 
 A reference to the target to which the event was originally dispatched.
 
