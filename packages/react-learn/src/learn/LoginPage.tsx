@@ -24,8 +24,16 @@ function LoginForm() {
 
   const [checked, setChecked] = useState(true);
 
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const data = Object.fromEntries(new FormData(event.currentTarget).entries());
+
+    console.log(data);
+  }
+
   return (
-    <form method="POST">
+    <form method="POST" onSubmit={onSubmit}>
       <TextInput
         name='email'
         value={auth.email}
