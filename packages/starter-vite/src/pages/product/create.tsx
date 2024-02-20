@@ -1,9 +1,12 @@
 import { useForm, useSelect } from '@refinedev/core'
 
 export const CreateProduct = () => {
+//   const { onFinish, mutationResult } = useForm({
+//     action: 'create',
+//     resource: 'products',
+//   });
   const { onFinish, mutationResult } = useForm({
-    action: 'create',
-    resource: 'products',
+    redirect: 'edit'
   });
 
   const { options } = useSelect({
@@ -13,7 +16,7 @@ export const CreateProduct = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const data = Object.fromEntries(new FormData(event.target).entries());
+    const data = Object.fromEntries(new FormData(event.currentTarget).entries());
 
     onFinish({
       ...data,

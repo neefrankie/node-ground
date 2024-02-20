@@ -2,9 +2,37 @@ import { DataProvider } from '@refinedev/core';
 
  const API_URL = "https://api.fake-rest.refine.dev";
 
+ const fetcher = async(url: string, options?: RequestInit) => {
+  return fetch(url, {
+    ...options,
+    headers: {
+      ...options?.headers,
+      Authorization: localStorage.getItem('my_access_token'),
+    },
+  });
+ }
+
  export const dataProvider: DataProvider = {
+  // If getMany is not implemented, Refine will automatically
+  // fetch the records one-by-one using the getOne method.
+  getMany: async ({ resource, ids, meta }) => {
+    const params = new URLSearchParams();
+
+    if (ids) {
+      ids.forEach((id) => params.append('id', `${id}`));
+    }
+
+    const response = await fetcher(`${API_URL}/${resource}?${params.toString()}`);
+
+    if (response.status < 200 || response.status > 299) throw response;
+
+    const data = await response.json();
+
+    return { data };
+  },
+
   getOne: async ({resource, id, meta }) => {
-    const response = await fetch(`${API_URL}/${resource}/${id}`);
+    const response = await fetcher(`${API_URL}/${resource}/${id}`);
     if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
@@ -13,7 +41,7 @@ import { DataProvider } from '@refinedev/core';
   },
 
   update: async ({ resource, id, variables}) => {
-    const response = await fetch(`${API_URL}/${resource}/${id}`, {
+    const response = await fetcher(`${API_URL}/${resource}/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(variables),
       headers: {
@@ -49,20 +77,22 @@ import { DataProvider } from '@refinedev/core';
       });
     }
 
-    const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
+    const response = await fetcher(`${API_URL}/${resource}?${params.toString()}`);
 
     if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
 
+    const total = Number(response.headers.get('x-total-count'));
+
     return {
       data,
-      total: 0,
+      total,
     };
   },
 
   create: async ({ resource, variables }) => {
-    const response = await fetch(`${API_URL}/${resource}`, {
+    const response = await fetcher(`${API_URL}/${resource}`, {
       method: 'POST',
       body: JSON.stringify(variables),
       headers: {
