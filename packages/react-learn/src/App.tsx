@@ -12,7 +12,6 @@ import { sitePath } from './routes/sitemap';
 import { Navbar } from './component/Navbar';
 import { ErrorPage } from './routes/ErrorPage';
 import Cookie from 'js-cookie';
-import { MUIPage } from './mui/MUIPage';
 
 
 function Skeleton() {
@@ -45,10 +44,6 @@ export const routes: RouteObject[] = [
           {
             path: sitePath.hookForm,
             element: <RHFPage />
-          },
-          {
-            path: sitePath.mui,
-            element: <MUIPage />
           },
         ]
       },
