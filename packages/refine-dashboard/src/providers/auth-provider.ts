@@ -45,7 +45,13 @@ export const authProvider: AuthProvider = {
       return { success: true, redirectTo: '/' };
     }
     
-    return { success: false };
+    return { 
+      success: false,
+      error: {
+        name: 'Login error',
+        message: 'Invalid email or password'
+      }
+    };
   },
 
   logout: async () => {
