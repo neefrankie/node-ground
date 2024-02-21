@@ -6,7 +6,7 @@ import { AuthRoot } from './routes/AuthRoot';
 import { Root } from './routes/Root';
 import { sitePath } from './routes/sitemap';
 import { ErrorPage } from './routes/ErrorPage';
-import { LoginPage } from './pages/LoginPage';
+import { LoginPage } from './pages/auth/LoginPage';
 import { HookFormPage } from './pages/HookFormPage';
 
 export const routes: RouteObject[] = [

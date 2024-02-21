@@ -1,4 +1,6 @@
 import { Outlet } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -8,6 +10,8 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { ScrollToTop } from './ScrollToTop';
+
+const defaultTheme = createTheme();
 
 function TopAppBar() {
   return (
@@ -35,15 +39,29 @@ function TopAppBar() {
         <Button color='inherit'>Login</Button>      
       </Toolbar>
     </AppBar>
-  )
+  );
 }
 
 export function Root() {
   return (
-    <>
-      <TopAppBar/>
+    <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
       <ScrollToTop/>
+      <TopAppBar/>
       <Outlet/>
-    </>
+      <Copyright />
+    </ThemeProvider>
+  );
+}
+
+function Copyright() {
+  return (
+    <Typography variant='body2' color='text.secondary' align='center'>
+      {'Copyright © '}
+      Cartavisa
+      {' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }
