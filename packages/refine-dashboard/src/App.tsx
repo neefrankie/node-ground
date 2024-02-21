@@ -2,6 +2,9 @@ import { DevtoolsProvider, DevtoolsPanel } from "@refinedev/devtools";
 import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 import {
   ThemedLayoutV2,
   ErrorComponent,
@@ -9,15 +12,13 @@ import {
   useNotificationProvider,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
-import { ThemeProvider } from "@mui/material/styles";
 import { dataProvider } from "./providers/data-provider";
 import { ShowProduct } from "./pages/product/show";
 import { EditProduct } from "./pages/product/edit";
 import { ListProducts } from "./pages/product/list";
 import { CreateProduct } from "./pages/product/create";
 import { authProvider } from "./providers/auth-provider";
+// import { Login } from './pages/login';
 import { ForgotPassword, Login, UpdatePassword } from './pages/AuthPage';
 
 function App(): JSX.Element {

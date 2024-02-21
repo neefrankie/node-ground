@@ -1,10 +1,13 @@
 import { useForm, useSelect } from '@refinedev/core'
+import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 export const CreateProduct = () => {
-//   const { onFinish, mutationResult } = useForm({
-//     action: 'create',
-//     resource: 'products',
-//   });
+
   const { onFinish, mutationResult } = useForm({
     redirect: 'edit'
   });
@@ -26,32 +29,46 @@ export const CreateProduct = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" id='name' name='name' />
+    <Box component='form' onSubmit={onSubmit}>
+      <Stack spacing={2} direction='column'>
+        <TextField
+          id='name'
+          label='Name'
+        />
+        <TextField
+          id='description'
+          label='Description'
+        />
+        <TextField
+          id='price'
+          label='Price'
+          type='number'
+        />
+        <TextField
+          id='material'
+          label='Material'
 
-      <label htmlFor="description">Description</label>
-      <textarea id='description' name='description' />
-
-      <label htmlFor="price">Price</label>
-      <input type="number" id='price' name='price' step='.01' />
-
-      <label htmlFor="material">Material</label>
-      <input type="text" id='material' name='material' />
-
-      <label htmlFor="category">Category ID</label>
-      <input type="text" id='category' name='category' />
-      <select name="category" id="category">
-        {options?.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+        />
+        <Select
+          id='category'
+        >
+          {options?.map((option) => (
+            <MenuItem 
+              key={option.value} 
+              value={option.value}
+            >
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+        <Button
+          type='submit'
+        >
+          Submit
+        </Button>
+      </Stack>
 
       {mutationResult.isSuccess && <span>succesfully submitted!</span>}
-
-      <button type='submit'>Submit</button>
-    </form>
+    </Box>
   )
 }
