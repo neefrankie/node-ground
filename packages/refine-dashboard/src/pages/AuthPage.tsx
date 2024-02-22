@@ -28,7 +28,12 @@ export function UpdatePassword() {
   return (
     <AuthPage
       title={<AuthTitle />}
-      type="updatePassword" 
+      type="updatePassword"
+      formProps={{
+        onSubmit: (data) => {
+          console.log(data);
+        }
+      }}
     />
   );
 }
