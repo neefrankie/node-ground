@@ -1,20 +1,16 @@
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import Grid from '@mui/material/Grid';
 
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ILoginValues, loginSchema } from '../../schema/auth';
-import { sleep } from '../../util/sleep';
 import { Link as RouteLink } from 'react-router-dom';
 
 import { useAuth } from './useAuth';
@@ -97,15 +93,28 @@ export function LoginPage() {
             autoComplete='current-password'
             {...register('password')}
           />
-          <FormControlLabel
-            control={
-              <Checkbox  
-                color='primary'
-                {...register('rememberMe')}
-              />
-            }
-            label='Remember me'
-          />
+          
+          <Box 
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}
+          >
+            <FormControlLabel
+              control={
+                <Checkbox  
+                  color='primary'
+                  {...register('rememberMe')}
+                />
+              }
+              label='Remember me'
+            />
+
+            <Link component={RouteLink} to='/forgot-password' variant='body2'>
+              Forgot password?
+            </Link>
+          </Box>
           <SubmitButton
             isDirty={isDirty}
             isValid={isValid}
@@ -115,18 +124,17 @@ export function LoginPage() {
             Submit
           </SubmitButton>
 
-          <Grid container>
-            <Grid item xs>
-              <Link component={RouteLink} to='/forgot-password' variant='body2'>
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link component={RouteLink} to='/signup' variant='body2'>
-                Sign Up
-              </Link>
-            </Grid>
-          </Grid>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignContent: 'center',
+            }}
+          >
+            <Link component={RouteLink} to='/signup' variant='body2'>
+              Sign Up
+            </Link>
+          </Box>
         </Box>
       </Box>
     </Container>
