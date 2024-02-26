@@ -3,17 +3,22 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Link from '@mui/material/Link';
+import Checkbox from '@mui/material/Checkbox';
+import Avatar from '@mui/material/Avatar';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import Grid from '@mui/material/Grid';
+
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ILoginValues, loginSchema } from '../../schema/auth';
 import { sleep } from '../../util/sleep';
-import Avatar from '@mui/material/Avatar';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import Grid from '@mui/material/Grid';
 import { Link as RouteLink } from 'react-router-dom';
-import Link from '@mui/material/Link';
-import { FormControlLabel } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
+
+import { useAuth } from './useAuth';
+import { SubmitButton } from '../../components/Buttons';
 
 export function LoginPage() {
 
@@ -30,17 +35,16 @@ export function LoginPage() {
   } = useForm<ILoginValues>({
     mode: 'onChange',
     defaultValues: {
-      email: '',
+      email: 'joe@example.org',
       password: '',
       rememberMe: false,
     },
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit: SubmitHandler<ILoginValues> = (data) => {
-    console.log(data);
-    return sleep(2000);
-  }
+  const {
+    onSubmit,
+  } = useAuth();
 
   const emailMsg = dirtyFields.email ? 
     errors.email?.message : 
@@ -102,15 +106,14 @@ export function LoginPage() {
             }
             label='Remember me'
           />
-          <Button 
-            type='submit' 
+          <SubmitButton
+            isDirty={isDirty}
+            isValid={isValid}
             fullWidth
-            variant='contained'
-            sx={{ mt: 3, mb: 2 }}
-            disabled={isSubmitting}
+            isSubmitting={isSubmitting}
           >
-            Login
-          </Button>
+            Submit
+          </SubmitButton>
 
           <Grid container>
             <Grid item xs>
