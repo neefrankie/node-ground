@@ -30,28 +30,3 @@ function getFavoriteNumber(): number {
 ```
 
 ## Optional Parameters
-
-Mark the parameter as optional with `?`
-
-```ts
-function f(x?: number) {
-
-}
-
-f()
-f(10)
-```
-
-Although the parameter is specified as type `number`, the `x` parameter will actually have the type `number | undefined` because the unspecified parameters in JS get the value `undefined`.
-
-You can also provide a parameter default:
-
-```ts
-function f(x = 10) {
-
-}
-```
-
-Now in the body of `f`, `x` will have type `number` because any `undefined` argument will be replaced with `10`.
-
-Note that when a parameter is optional, callers can always pass `undefined`.
