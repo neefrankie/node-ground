@@ -1,3 +1,5 @@
+# MIME Types
+
 ## Syntax
 
 ```
