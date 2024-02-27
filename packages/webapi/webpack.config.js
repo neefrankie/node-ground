@@ -7,6 +7,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   mode: prod ? 'production' : 'development',
   entry: {
+    auth: './src/client/auth.ts',
+    upload: './src/client/upload.ts',
     canvas: './src/client/canvas.ts',
   },
   devtool: prod ? 'source-map' : 'inline-source-map',
