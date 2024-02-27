@@ -1,5 +1,9 @@
 # MIME Types
 
+Media type表示文档、文件或一堆比特的性质和格式。
+
+浏览器依赖MIME类型而不是文件扩展名来决定如何处理URL，所以web服务器因该在response `Content-Type` 中设置正确的MIME类型。
+
 ## Syntax
 
 ```
