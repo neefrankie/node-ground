@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File API</title>
+  <style>
+.output {
+  overflow: scroll;
+  margin: 1rem 0;
+  height: 200px;
+}
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clear: rect(1px, 1px, 1px, 1px);
+}
+#dropbox {
+  border: 1px;
+  background-color: gray;
+  text-align: center;
+  height: 5rem;
+}
+img.obj {
+  width: 60px;
+  object-fit: contain;
+}
+input.visually-hidden:is(:focus, :focus-within) + label {
+  outline: thin dotted;
+}
+  </style>
+</head>
+<body>
+  <h2>Logging filenames</h2>
+  <input id="myfiles" multiple type="file" />
+  <pre class="output">Selected files:</pre>
+
+  <h2>Showing file size</h2>
+  <form name="uploadForm">
+    <div>
+      <input type="file" id="uploadInput" multiple>
+      <label for="fileNum">Selected files:</label>
+      <output id="fileNum">0</output>
+      <label for="fileSize">Total size:</label>
+      <output id="fileSize">0</output>
+    </div>
+    <div>
+      <input type="submit" value="Send file">
+    </div>
+  </form>
+
+  <h2>Custom File Button</h2>
+  <input type="file" id="fileElem" multiple accept="image/*" style="display: none;" />
+  <button id="fileSelect">Select some files</button>
+
+  <h2>Using a label element to trigger a hidden file input element</h2>
+  <input type="file" id="fileAsLabel" multiple accept="image/*" class="visually-hidden">
+  <label for="fileAsLabel">Select some files</label>
+
+  <h2>Selecting files using drag and drop</h2>
+  <div id="dropbox">
+    Drop files here
+  </div>
+  <div id="fileReaderPreview"></div>
+  <div id="objectURLPreview"></div>
+<script>
+function logFilenames() {
+  const output = document.querySelector(".output");
+  const fileInput = document.querySelector("#myfiles");
+
+  fileInput.addEventListener('change', () => {
+    for (const file of fileInput.files) {
+      output.innerText += `\n${file.name}`
+    }
+  });
+}
+
+function showFileSize() {
+  const uploadInput = document.getElementById("uploadInput");
+  uploadInput.addEventListener('change', () => {
+    let numberOfBytes = 0;
+    for (const file of uploadInput.files) {
+      numberOfBytes += file.size;
+    }
+
+    const units = [
+      "B",
+      "KiB",
+      "MiB",
+      "GiB",
+      "TiB",
+      "PiB",
+      "EiB",
+      "ZiB",
+      "YiB",
+    ];
+
+    const exponent = Math.min(
+      Math.floor(Math.log(numberOfBytes) / Math.log(1024)), units.length - 1
+    );
+
+    const approx = numberOfBytes / 1024 ** exponent;
+    const output = exponent === 0 ?
+      `${numberOfBytes} bytes` :
+      `${approx.toFixed(3)} ${units[exponent]} (${numberOfBytes} bytes)`;
+
+    document.getElementById("fileNum").textContent = uploadInput.files.length;
+    document.getElementById("fileSize").textContent = output;
+  }, false);
+}
+
+function customInputButton() {
+  const fileSelect = document.getElementById("fileSelect");
+  const fileElem = document.getElementById("fileElem");
+
+  fileSelect.addEventListener("click", (e) => {
+    if (fileElem) {
+      fileElem.click();
+    }
+  })
+}
+
+function dragenter(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+
+function dragover(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+
+function drop(e) {
+  e.stopPropagation();
+  e.preventDefault();
+
+  // Retrieve the dataTransfer field from the event,
+  const dt = e.dataTransfer;
+  // pull the file list out of it
+  const files = dt.files;
+
+  readFilePreview(files);
+  objectURLPreview(files);
+}
+
+function readFilePreview(files) {
+  const preview = document.getElementById('fileReaderPreview');
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+
+    if (!file.type.startsWith('image/')) {
+      continue;
+    }
+
+    const img = document.createElement('img');
+    img.classList.add("obj");
+    img.file = file;
+
+    preview.appendChild(img);
+
+    const reader = new FileReader();
+    // Relase the object URL since it's no longer needed
+    // once the image has been loaded.
+    reader.onload = (e) => {
+      img.src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+  }
+}
+
+function objectURLPreview(files) {
+  const preview = document.getElementById('objectURLPreview');
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+
+    if (!file.type.startsWith('image/')) {
+      continue;
+    }
+
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.height = 60;
+    img.onload = () => {
+      URL.revokeObjectURL(img.src);
+    };
+
+    preview.appendChild(img);
+  }
+}
+
+function dragAndDrop() {
+  const dropbox = document.getElementById('dropbox');
+  dropbox.addEventListener('dragenter', dragenter, false);
+  dropbox.addEventListener('dragover', dragover, false);
+  dropbox.addEventListener('drop', drop, false);
+}
+
+logFilenames();
+showFileSize();
+customInputButton();
+dragAndDrop();
+
+</script>
+</body>
+</html>

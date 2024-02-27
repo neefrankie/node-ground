@@ -6,7 +6,3 @@ Based on enctype:
 * `multipar/form-data`. In JS handle it with `FormData`
 
 ## HTML Form
-
-## URLSearchParams
-
-
