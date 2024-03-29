@@ -1,4 +1,0 @@
-# Tempalte Syntax
-
-## Interpolation
-
