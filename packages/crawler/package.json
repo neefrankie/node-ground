@@ -3,23 +3,29 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "watch": "tsc --watch"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.41.1",
+    "@playwright/test": "^1.42.1",
     "@types/jsdom": "^21.1.6",
-    "@types/lodash": "^4.14.202",
-    "@types/node": "^20.11.7",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "^20.11.30",
     "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
-    "puppeteer": "^21.9.0",
+    "puppeteer": "^22.6.1",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.3"
   },
   "dependencies": {
-    "playwright": "^1.42.1"
+    "dotenv": "^16.4.5",
+    "playwright": "^1.42.1",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-recaptcha": "^3.6.8",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
 }
